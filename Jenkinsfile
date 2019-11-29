@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building...'
-        echo "${env}"
+        getEnv()
       }
     }
     stage('Test') {
@@ -20,17 +20,17 @@ pipeline {
       steps {  
         echo 'Deploying...'
         getBuildInfo()
-        //externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
-        //externalMethod.sayHello()
       }
     }
   }
 }
 
 def getBuildInfo() {
-  def subject = "Jenkins Job name is ${env.JOB_NAME} and Build # is [${env.BUILD_NUMBER}]"
-  println subject
+  println "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
 }
 def getDir() {
-  echo "${pwd}"
+  echo "The working directory is ${pwd}"
+}
+def getEnv(){
+  echo "${env}"
 }
