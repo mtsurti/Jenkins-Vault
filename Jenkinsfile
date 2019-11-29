@@ -9,9 +9,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo Building...'
-        sh 'echo ${BRANCH_NAME}' 
-        sh 'echo ${env.BRANCH_NAME}'
+        sh 'echo Building...' 
+        sh 'echo ${System.getenv(BRANCH_NAME)}'
       }
     }
     stage('Test') {
