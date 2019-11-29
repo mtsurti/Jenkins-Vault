@@ -12,8 +12,7 @@ pipeline {
     stage('Test') {
       steps {
         sh 'echo Testing...'
-        //workspace = pwd() 
-        //sh 'echo $workspace'
+        getDir()
       }
     }
     stage('Deploy') {
@@ -30,4 +29,7 @@ pipeline {
 def getBuildInfo() {
   def subject = "${env.JOB_NAME} [${env.BUILD_NUMBER}]"
   println subject
+}
+def getDir() {
+  sh 'echo pwd'
 }
