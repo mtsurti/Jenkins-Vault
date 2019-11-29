@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  def workspace
-  def externalMethod
+  def workspace = ""
+  def externalMethod = ""
   
   stages {
     stage('Build') {
