@@ -43,5 +43,5 @@ def getAllEnv() {
   }
 }
 def restartJenkins() {
-  echo 'sh ${env.HUDSON_URL}/softRestart' 
+  sh 'wget ${env.HUDSON_URL}/safeRestart'
 }
