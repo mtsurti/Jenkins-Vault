@@ -31,5 +31,5 @@ def getBuildInfo() {
   println subject
 }
 def getDir() {
-  sh 'echo pwd'
+  sh 'sh pwd'
 }
