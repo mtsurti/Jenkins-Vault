@@ -37,11 +37,8 @@ def readExternalFile() {
     println it 
 }
 def getAllEnv() {
-  script {
-       def fields = env.getEnvironment()
-       fields.each {
-            key, value -> println("${key} = ${value}");
-        }
-        println(env.PATH)
-   }
+  def fields = env.getEnvironment()
+  fields.each {
+      key, value -> println("${key} = ${value}");
+  }
 }
