@@ -28,9 +28,9 @@ pipeline {
 }
 
 def getBuildInfo() {
-  def subject = "${env.JOB_NAME} [${env.BUILD_NUMBER}]"
+  def subject = "Jenkins Job name is ${env.JOB_NAME} and Build # is [${env.BUILD_NUMBER}]"
   println subject
 }
 def getDir() {
-  echo 'pwd'
+  sh 'pwd'
 }
