@@ -43,5 +43,5 @@ def getAllEnv() {
   }
 }
 def restartJenkins() {
-  sh 'wget ${env.JENKINS_URL}/safeRestart'
+  sh 'sudo service jenkins restart'
 }
