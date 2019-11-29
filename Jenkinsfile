@@ -10,7 +10,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo Building...' 
-        sh 'echo ${System.getenv(BRANCH_NAME)}'
+        sh 'echo ${System.getenv($BRANCH_NAME)}'
       }
     }
     stage('Test') {
