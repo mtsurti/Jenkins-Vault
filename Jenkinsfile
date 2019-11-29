@@ -2,8 +2,6 @@
 
 pipeline {
   agent any
-  
-  try {
     stages {
       stage('Build') {
         steps {
@@ -21,16 +19,10 @@ pipeline {
         steps {  
           echo 'Deploying...'
           getBuildInfo()
+          restartJenkins()
         }
       }
     }
-  }
-  catch (err) {
-      error "Something went wrong"
-  }
-  finally {
-    restartJenkins()
-  }
 }
 
 def getBuildInfo() {
