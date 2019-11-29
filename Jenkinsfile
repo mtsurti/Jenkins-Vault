@@ -32,6 +32,5 @@ def getDir() {
   echo "The working directory is ${pwd}"
 }
 def getAllEnv() {
-  def environ = System.getenv()
-  echo environ
+  echo env
 }
