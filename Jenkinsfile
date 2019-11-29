@@ -3,26 +3,33 @@
 pipeline {
   agent any
   
-  stages {
-    stage('Build') {
-      steps {
-        echo 'Building...'
-        getAllEnv()
+  try {
+    stages {
+      stage('Build') {
+        steps {
+          echo 'Building...'
+          getAllEnv()
+        }
+      }
+      stage('Test') {
+        steps {
+          echo 'Testing...'
+          getDir()
+        }
+      }
+      stage('Deploy') {
+        steps {  
+          echo 'Deploying...'
+          getBuildInfo()
+        }
       }
     }
-    stage('Test') {
-      steps {
-        echo 'Testing...'
-        getDir()
-      }
+    catch (err) {
+      error "Something went wrong"
     }
-    stage('Deploy') {
-      steps {  
-        echo 'Deploying...'
-        getBuildInfo()
-      }
+    finally {
+      restartJenkins()
     }
-  }
 }
 
 def getBuildInfo() {
@@ -41,4 +48,7 @@ def getAllEnv() {
   fields.each {
       key, value -> println("${key} = ${value}");
   }
+}
+def restartJenkins() {
+  echo 'sh ${env.HUDSON_URL}/softRestart' 
 }
