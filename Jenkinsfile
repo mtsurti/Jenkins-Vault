@@ -24,12 +24,13 @@ pipeline {
         }
       }
     }
-    catch (err) {
+  }
+  catch (err) {
       error "Something went wrong"
-    }
-    finally {
-      restartJenkins()
-    }
+  }
+  finally {
+    restartJenkins()
+  }
 }
 
 def getBuildInfo() {
