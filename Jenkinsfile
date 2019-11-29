@@ -11,13 +11,14 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Testing...'
-        //def workspace = pwd() //echo workspace
+        def workspace = pwd() 
+        echo workspace
       }
     }
     stage('Deploy') {
       steps {  
         echo 'Deploying...'
-        def externalMethod = load("file1.groovy") // Call the method we defined in file1. 
+        def externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
         externalMethod.sayHello()
       }
     }
