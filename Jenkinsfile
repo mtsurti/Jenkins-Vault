@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building...'
-        getAllEnv()
+        getEXternalFile()
       }
     }
     stage('Test') {
@@ -31,6 +31,8 @@ def getBuildInfo() {
 def getDir() {
   echo "The working directory is ${pwd}"
 }
-def getAllEnv() {
-  echo env
+def readExternalFile() {
+  def env = System.getenv()
+  env.each
+    println it 
 }
