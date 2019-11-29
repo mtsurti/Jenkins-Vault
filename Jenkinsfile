@@ -12,13 +12,13 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'echo Testing...'
+        echo 'Testing...'
         getDir()
       }
     }
     stage('Deploy') {
       steps {  
-        sh 'echo Deploying...'
+        echo 'Deploying...'
         getBuildInfo()
         //externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
         //externalMethod.sayHello()
@@ -32,5 +32,5 @@ def getBuildInfo() {
   println subject
 }
 def getDir() {
-  sh 'pwd'
+  echo 'pwd'
 }
