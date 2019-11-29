@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building...'
-        readExternalFile()
+        getAllEnv()
       }
     }
     stage('Test') {
@@ -35,4 +35,13 @@ def readExternalFile() {
   def env = System.getenv()
   env.each
     println it 
+}
+def getAllEnv() {
+  script {
+       def fields = env.getEnvironment()
+       fields.each {
+            key, value -> println("${key} = ${value}");
+        }
+        println(env.PATH)
+   }
 }
