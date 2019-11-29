@@ -26,11 +26,11 @@ pipeline {
 }
 
 def getBuildInfo() {
-  println "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
+  echo "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
 }
 def getDir() {
   echo "The working directory is ${pwd}"
 }
-def getEnv(){
+def getEnv() {
   echo "${env}"
 }
