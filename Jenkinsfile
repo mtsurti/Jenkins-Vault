@@ -1,7 +1,10 @@
+#!/usr/local/bin/groovy
+
+def workspace = ""
+def externalMethod = ""
+
 pipeline {
   agent any
-  def workspace = ""
-  def externalMethod = ""
   
   stages {
     stage('Build') {
