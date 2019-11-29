@@ -17,7 +17,8 @@ pipeline {
     stage('Deploy') {
       steps {  
         echo 'Deploying...'
-        //def externalMethod = load("hello.groovy") // Call the method we defined in file1. //externalMethod.sayHello()
+        def externalMethod = load("file1.groovy") // Call the method we defined in file1. 
+        externalMethod.sayHello()
       }
     }
   }
