@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo Building...'
+        echo 'Building...'
         echo "${env}"
       }
     }
