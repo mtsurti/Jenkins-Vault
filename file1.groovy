@@ -1,3 +1,5 @@
 #! /usr/local/bin/groovy
 
-println 'Hello'
+def sayHello {
+  println 'Hello'
+}
