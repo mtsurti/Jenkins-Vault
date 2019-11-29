@@ -28,6 +28,6 @@ pipeline {
 }
 
 def getBuildInfo() {
-  def subject = ${env.JOB_NAME} [${env.BUILD_NUMBER}]
+  def subject = "${env.JOB_NAME} [${env.BUILD_NUMBER}]"
   println subject
 }
