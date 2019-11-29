@@ -7,6 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building...'
+        getAllEnv()
       }
     }
     stage('Test') {
@@ -29,4 +30,7 @@ def getBuildInfo() {
 }
 def getDir() {
   echo "The working directory is ${pwd}"
+}
+def getAllEnv() {
+  echo "${System.getenv()}"
 }
