@@ -43,5 +43,6 @@ def getAllEnv() {
   }
 }
 def restartJenkins() {
-  sh 'sudo service jenkins restart'
+  //sh 'sudo service jenkins restart'
+  sh 'sudo systemctl start jenkins.service'
 }
