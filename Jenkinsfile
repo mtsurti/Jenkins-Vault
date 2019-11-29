@@ -1,16 +1,12 @@
 #!/usr/local/bin/groovy
 
-def workspace = ""
-def externalMethod = ""
-
 pipeline {
   agent any
   
   stages {
     stage('Build') {
       steps {
-        sh 'echo Building...' 
-        sh 'echo ${System.getenv($BRANCH_NAME)}'
+        sh 'echo Building...'
       }
     }
     stage('Test') {
@@ -23,9 +19,15 @@ pipeline {
     stage('Deploy') {
       steps {  
         sh 'echo Deploying...'
+        getBuildInfo()
         //externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
         //externalMethod.sayHello()
       }
     }
   }
+}
+
+def getBuildInfo() {
+  def subject = ${env.JOB_NAME} [${env.BUILD_NUMBER}]
+  println subject
 }
