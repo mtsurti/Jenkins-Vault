@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building...'
-        getExternalFile()
+        readExternalFile()
       }
     }
     stage('Test') {
