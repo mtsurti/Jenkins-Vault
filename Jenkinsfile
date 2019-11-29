@@ -8,13 +8,17 @@ pipeline {
       }
     }
     stage('Test') {
-        def workspace = pwd()
-        echo workspace     
+      steps {
+        //def workspace = pwd()
+        //echo workspace
+      }
     }
     stage('Deploy') {
-        def externalMethod = load("hello.groovy")
+      steps {  
+        //def externalMethod = load("hello.groovy")
          // Call the method we defined in file1.
-        externalMethod.sayHello()
+        //externalMethod.sayHello()
+      }
     }
   }
 }
