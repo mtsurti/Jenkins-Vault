@@ -1,6 +1,8 @@
 pipeline {
   agent any
-
+  def workspace
+  def externalMethod
+  
   stages {
     stage('Build') {
       steps {
@@ -11,14 +13,14 @@ pipeline {
     stage('Test') {
       steps {
         sh 'echo Testing...'
-        def workspace = pwd() 
+        workspace = pwd() 
         sh 'echo $workspace'
       }
     }
     stage('Deploy') {
       steps {  
         sh 'echo Deploying...'
-        def externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
+        externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
         externalMethod.sayHello()
       }
     }
