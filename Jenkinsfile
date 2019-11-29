@@ -4,20 +4,20 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Building...'
-        echo '${BRANCH_NAME} ${env.BRANCH_NAME}'
+        sh 'echo Building...'
+        sh 'echo ${BRANCH_NAME} ${env.BRANCH_NAME}'
       }
     }
     stage('Test') {
       steps {
-        echo 'Testing...'
+        sh 'echo Testing...'
         def workspace = pwd() 
-        echo workspace
+        sh 'echo $workspace'
       }
     }
     stage('Deploy') {
       steps {  
-        echo 'Deploying...'
+        sh 'echo Deploying...'
         def externalMethod = load 'file1.groovy' // Call the method we defined in file1. 
         externalMethod.sayHello()
       }
