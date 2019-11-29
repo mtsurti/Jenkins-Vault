@@ -43,6 +43,6 @@ def getAllEnv() {
   }
 }
 def restartJenkins() {
-  //sh 'sudo service jenkins restart'
-  sh 'sudo systemctl start jenkins.service'
+  sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
+  sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
 }
