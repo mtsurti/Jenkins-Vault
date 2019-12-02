@@ -12,7 +12,7 @@
       stage('Test') {
         //steps {
           echo 'Testing...'
-          getDir()
+          //getDir()
         //}
       }
       stage('Rotate') {
