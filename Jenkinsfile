@@ -77,7 +77,7 @@ def generateNewToken() {
   def user = User.get(userName, false)
   def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
-  user.save()
+  //user.save()
 
   return result.plainValue  
 }
