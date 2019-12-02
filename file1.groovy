@@ -1,11 +1,12 @@
 #! /usr/local/bin/groovy
 
-def sayHello {
-  println 'Hello'
-}
+// script parameters
+def userName = 'jenkins'
+def tokenName = 'VAULT_TOKEN'
+  
+def user = User.get(userName, false)
+def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
+def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
+user.save()
 
-def getAllEnv() {
-  env = System.getenv()
-  env.each
-    println it
-}
+return result.plainValue
