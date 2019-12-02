@@ -90,7 +90,7 @@ def rotateToken() {
         // values will be masked
         sh 'echo TOKEN=$VAULT_TOKEN'
         sh 'echo ADDR=$VAULT_ADDR'
-   // }
+    }
 }   
 
 
