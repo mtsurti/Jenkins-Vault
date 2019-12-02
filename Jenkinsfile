@@ -74,7 +74,7 @@ def rotateToken() {
 
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
-    def configuration = [vaultUrl: 'http:127.0.0.1:8200.com',
+    def configuration = [vaultUrl: 'http://127.0.0.1:8200.com',
                             vaultCredentialId: 'VAULT_TOKEN',
                             engineVersion: 2,
                             timeout: 60]
