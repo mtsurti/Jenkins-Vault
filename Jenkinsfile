@@ -1,8 +1,8 @@
 #!/usr/local/bin/groovy
 
-pipeline {
-  agent any
-    stages {
+//pipeline {
+//  agent any
+//    stages {
       stage('Build') {
         steps {
           echo 'Building...'
@@ -28,9 +28,6 @@ pipeline {
           restartJenkins()
         }
       }
-    }
-  }
-}
 
 def getBuildInfo() {
     echo "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
