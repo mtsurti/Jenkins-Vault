@@ -86,7 +86,7 @@ def rotateToken() {
       //  sh 'echo TOKEN=$VAULT_TOKEN'
       //  sh 'echo ADDR=$VAULT_ADDR'
    // }
-   withCredentials([[$class: 'VaultTokenCredentialBinding', credentialsId: '$VAULT_TOKEN', vaultAddr: 'http://localhost:8200']]) {
+   withCredentials([[$class: 'VaultTokenCredentialBinding', addrVariable: 'VAULT_ADDR', credentialsId: 'VAULT_TOKEN', vaultAddr: 'http://localhost:8200']]) {
         // values will be masked
         sh 'echo TOKEN=$VAULT_TOKEN'
         sh 'echo ADDR=$VAULT_ADDR'
