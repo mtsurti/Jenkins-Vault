@@ -1,5 +1,5 @@
 #!/usr/local/bin/groovy
-node {
+
 //environment {
   //      SECRET = vault path: 'secrets', key: 'username', vaultUrl: 'https://my-vault.com:8200', credentialsId: 'my-creds', engineVersion: "2"
 //}
@@ -20,9 +20,11 @@ node {
       }
       stage('Rotate') {
         //steps {
+        node {
           echo 'Rotating Token...'
           rotateToken()
         //}
+        }
       }
       stage('Deploy') {
         //steps {  
