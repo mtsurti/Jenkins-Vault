@@ -29,6 +29,7 @@ pipeline {
         }
       }
     }
+  }
 }
 
 def getBuildInfo() {
@@ -81,4 +82,4 @@ def rotateToken() {
         sh 'echo $another_test'
     }
 }   
-}
+
