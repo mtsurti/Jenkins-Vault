@@ -72,19 +72,22 @@ def rotateToken() {
 
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
-    //def configuration = [vaultUrl: 'http://localhost:8200.com',
-    //                        vaultCredentialId: 's.tr4LpYkNnKlWcLiT4xN5v7pk',
-    //                        engineVersion: 2]
+    def configuration = [vaultUrl: 'localhost:8200.com',
+                            vaultCredentialId: 'VAULT_TOKEN',
+                            engineVersion: 2,
+                            timeout: 60]
     // inside this block your credentials will be available as env variables
-    //withVault([configuration: configuration, vaultSecrets: secrets]) {
-      //  sh 'echo $testing'
-       // sh 'echo $testing_again'
-       // sh 'echo $another_test'
-    //}
-   withCredentials([[$class: 'VaultTokenCredentialBinding', credentialsId: 's.tr4LpYkNnKlWcLiT4xN5v7pk', vaultAddr: 'https://localhost:8200']]) {
-        // values will be masked
+    withVault([configuration: configuration, vaultSecrets: secrets]) {
+        sh 'echo $testing'
+        sh 'echo $testing_again'
+        sh 'echo $another_test'
         sh 'echo TOKEN=$VAULT_TOKEN'
         sh 'echo ADDR=$VAULT_ADDR'
     }
+  // withCredentials([[$class: 'VaultTokenCredentialBinding', credentialsId: 's.tr4LpYkNnKlWcLiT4xN5v7pk', vaultAddr: 'https://localhost:8200']]) {
+        // values will be masked
+   //     sh 'echo TOKEN=$VAULT_TOKEN'
+   //     sh 'echo ADDR=$VAULT_ADDR'
+   // }
 }   
 
