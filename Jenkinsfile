@@ -65,7 +65,7 @@ def rotateToken() {
     // engine version can be defined on secret, job, folder or global.
     // the default is engine version 2 unless otherwise specified globally.
     def secrets = [
-        [path: 'secret/secret/testing', engineVersion: 1, secretValues: [
+        [path: 'secret/testing', engineVersion: 1, secretValues: [
             [envVar: 'testing', vaultKey: 'value_one'],
             [envVar: 'testing_again', vaultKey: 'value_two']]],
         [path: 'secret/another_test', engineVersion: 2, secretValues: [
