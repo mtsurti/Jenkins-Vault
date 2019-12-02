@@ -1,5 +1,10 @@
 #!/usr/local/bin/groovy
 
+import hudson.model.*
+import jenkins.model.*
+import jenkins.security.*
+import jenkins.security.apitoken.*
+
 //environment {
   //      SECRET = vault path: 'secrets', key: 'username', vaultUrl: 'https://my-vault.com:8200', credentialsId: 'my-creds', engineVersion: "2"
 //}
@@ -17,6 +22,10 @@
           echo 'Testing...'
           //getDir()
         //}
+      }
+      stage('Generate') {
+        def newToken = generateNewTOken()
+        sh "echo New Token is $newToken"
       }
       stage('Rotate') {
         //steps {
@@ -59,6 +68,19 @@ def restartJenkins() {
     //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
     //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
     }
+
+def generateNewToken() {
+    // script parameters
+  def userName = 'jenkins'
+  def tokenName = 'VAULT_TOKEN'
+
+  def user = User.get(userName, false)
+  def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
+  def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
+  user.save()
+
+  return result.plainValue  
+}
 
 def rotateToken() {
     // define the secrets and the env variables
