@@ -1,5 +1,8 @@
 #!/usr/local/bin/groovy
 
+//environment {
+  //      SECRET = vault path: 'secrets', key: 'username', vaultUrl: 'https://my-vault.com:8200', credentialsId: 'my-creds', engineVersion: "2"
+//}
 //pipeline {
 //  agent any
 //    stages {
@@ -71,7 +74,7 @@ def rotateToken() {
     // (e.g. folder or global) will be used
     def configuration = [vaultUrl: 'http://localhost:8200.com',
                             vaultCredentialId: 's.tr4LpYkNnKlWcLiT4xN5v7pk',
-                            engineVersion: 1]
+                            engineVersion: 2]
     // inside this block your credentials will be available as env variables
     withVault([configuration: configuration, vaultSecrets: secrets]) {
         sh 'echo $testing'
