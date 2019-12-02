@@ -24,8 +24,9 @@ import jenkins.security.apitoken.*
         //}
       }
       stage('Generate') {
-        def newToken = generateNewToken()
-        sh "echo New Token is $newToken"
+        //def newToken = generateNewToken()
+        generateNewToken()
+        //sh "echo New Token is $newToken"
       }
       stage('Rotate') {
         //steps {
@@ -71,7 +72,7 @@ def restartJenkins() {
 
 def generateNewToken() {
     // script parameters
-  def userName = 'jenkins'
+  /*def userName = 'jenkins'
   def tokenName = 'VAULT_TOKEN'
 
   def user = User.get(userName, false)
@@ -79,7 +80,10 @@ def generateNewToken() {
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
   //user.save()
 
-  return result.plainValue  
+  return result.plainValue*/  
+  
+  def file = readFile 'newToken.groovy' // 1
+  println "Reading from file $file.absolutePath: $file.text" // 3
 }
 
 def rotateToken() {
