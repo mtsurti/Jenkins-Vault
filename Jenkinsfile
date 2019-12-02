@@ -4,29 +4,29 @@
 //  agent any
 //    stages {
       stage('Build') {
-        steps {
+        //steps {
           echo 'Building...'
           getAllEnv()
-        }
+        //}
       }
       stage('Test') {
-        steps {
+        //steps {
           echo 'Testing...'
           getDir()
-        }
+        //}
       }
       stage('Rotate') {
-        steps {
+        //steps {
           echo 'Rotating Token...'
           rotateToken()
-        }
+        //}
       }
       stage('Deploy') {
-        steps {  
+        //steps {  
           echo 'Deploying...'
           getBuildInfo()
           restartJenkins()
-        }
+        //}
       }
 
 def getBuildInfo() {
