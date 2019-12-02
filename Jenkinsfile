@@ -20,6 +20,7 @@ pipeline {
           echo 'Rotating Token...'
           rotateToken()
         }
+      }
       stage('Deploy') {
         steps {  
           echo 'Deploying...'
