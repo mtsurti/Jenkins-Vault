@@ -12,39 +12,41 @@ import jenkins.security.apitoken.*
 //  agent any
 //    stages {
       def tokenFile 
-      stage('Checkout') {
-        //steps {
-          echo 'Checking out scm...'
-          checkout scm
-          //getAllEnv()
-        //}
-      }
-      stage('Load') {
-        //steps {
-          echo 'Loading from external token file...'
-          tokenFile = load 'newtoken.groovy'  
-        //getDir()
-        //}
-      }
-      stage('Generate') {
-        node {
-          //def newToken = generateNewToken()
-          tokenFile.shuffleToken()
-          //generateNewToken()
-          //sh "echo New Token is $newToken"
+      node {
+        stage('Checkout') {
+          //steps {
+            echo 'Checking out scm...'
+            checkout scm
+            //getAllEnv()
+          //}
         }
-      }
-      stage('Deploy to Vault server') {
-        //steps {  
-          echo 'Deploying...'
-          rotateToken()  
-          //getBuildInfo()
-          //restartJenkins()
-        //}
-      }
-      stage('Update config.xml'){
-      }
-      stage('Restart Jenkins'){
+        stage('Load') {
+          //steps {
+            echo 'Loading from external token file...'
+            tokenFile = load 'newtoken.groovy'  
+          //getDir()
+          //}
+        }
+        stage('Generate') {
+          node {
+            //def newToken = generateNewToken()
+            tokenFile.shuffleToken()
+            //generateNewToken()
+            //sh "echo New Token is $newToken"
+          }
+        }
+        stage('Deploy to Vault server') {
+          //steps {  
+            echo 'Deploying...'
+            rotateToken()  
+            //getBuildInfo()
+            //restartJenkins()
+          //}
+        }
+        stage('Update config.xml'){
+        }
+        stage('Restart Jenkins'){
+        }
       }
 
 def getBuildInfo() {
