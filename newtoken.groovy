@@ -1,7 +1,7 @@
 #! /usr/local/bin/groovy
 
 // script parameters
-def ShuffleToken() {
+def shuffleToken() {
   def userName = 'jenkins'
   def tokenName = 'VAULT_TOKEN'
   
