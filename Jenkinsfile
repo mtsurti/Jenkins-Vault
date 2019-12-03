@@ -13,39 +13,48 @@ import jenkins.security.apitoken.*
 //    stages {
       def tokenFile 
       node {
-        stage('Checkout') {
-          //steps {
-            echo 'Checking out scm...'
-            checkout scm
-            //getAllEnv()
-          //}
-        }
-        stage('Load') {
-          //steps {
-            echo 'Loading from external token file...'
-            tokenFile = load 'newtoken.groovy'  
-          //getDir()
-          //}
-        }
-        stage('Generate') {
-          node {
-            //def newToken = generateNewToken()
-            tokenFile.shuffleToken()
-            //generateNewToken()
-            //sh "echo New Token is $newToken"
+        try {
+          stage('Checkout') {
+            //steps {
+              echo 'Checking out scm...'
+              checkout scm
+              //getAllEnv()
+            //}
           }
-        }
-        stage('Deploy to Vault server') {
-          //steps {  
-            echo 'Deploying...'
-            rotateToken()  
-            //getBuildInfo()
-            //restartJenkins()
-          //}
-        }
-        stage('Update config.xml'){
-        }
-        stage('Restart Jenkins'){
+          stage('Load') {
+            //steps {
+              echo 'Loading from external token file...'
+              tokenFile = load 'newtoken.groovy'  
+            //getDir()
+            //}
+          }
+          stage('Generate') {
+            //node {
+              //def newToken = generateNewToken()
+              echo 'Generating new token file...'
+              println $tokenFile
+              tokenFile.shuffleToken()
+              //generateNewToken()
+              //sh "echo New Token is $newToken"
+           // }
+          }
+          stage('Deploy to Vault server') {
+            //steps {  
+              echo 'Deploying to Vault Server...'
+              rotateToken()  
+              //getBuildInfo()
+              //restartJenkins()
+            //}
+          }
+          stage('Update config.xml'){
+            echo 'Updating config.xml file with new token...'
+          }
+          stage('Restart Jenkins'){
+            echo 'Retarting Jenkins...'
+          }
+        } 
+        catch (e) {
+            throw e
         }
       }
 
@@ -107,5 +116,3 @@ def rotateToken() {
      //   sh 'echo ADDR=$VAULT_ADDR'
    // }
 }   
-
-
