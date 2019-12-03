@@ -5,11 +5,11 @@ def shuffleToken() {
   def userName = 'jenkins'
   def tokenName = 'VAULT_TOKEN'
   
-  def user = User.get(userName, false)
+  /*def user = User.get(userName, false)
   def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
-  user.save()
-
+  user.save()*/
+  def result = userName.bytes.encodeBase64().toString()
   println result.plainValue
 }
 return this
