@@ -24,9 +24,11 @@ import jenkins.security.apitoken.*
         //}
       }
       stage('Generate') {
-        //def newToken = generateNewToken()
-        generateNewToken()
-        //sh "echo New Token is $newToken"
+        node {
+          //def newToken = generateNewToken()
+          generateNewToken()
+          //sh "echo New Token is $newToken"
+        }
       }
       stage('Rotate') {
         //steps {
