@@ -32,7 +32,7 @@ import jenkins.security.apitoken.*
             //node {
               //def newToken = generateNewToken()
               echo 'Generating new token file...'
-              println $tokenFile
+              println tokenFile
               tokenFile.shuffleToken()
               //generateNewToken()
               //sh "echo New Token is $newToken"
