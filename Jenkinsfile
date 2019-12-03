@@ -26,7 +26,7 @@ import jenkins.security.apitoken.*
             //steps {
               echo 'Loading from external token file...'
             println "Path is " + pwd()  
-            tokenFile = load pwd() + 'newtoken.groovy'  
+            tokenFile = load pwd() + '/newtoken.groovy'  
               println "Content when file loaded " + tokenFile
             //getDir()
             //}
