@@ -84,11 +84,10 @@ def generateNewToken() {
 
   return result.plainValue*/  
   checkout scm
-  def file = readFile 'newToken.groovy' // 1
+  def file = load 'newToken.groovy' // 1
   //println "Reading from file $file.absolutePath: $file.text" // 3
-  println "File content: $file" // 3
+  file.shuffleToken()
 }
-
 def rotateToken() {
     // define the secrets and the env variables
     // engine version can be defined on secret, job, folder or global.
