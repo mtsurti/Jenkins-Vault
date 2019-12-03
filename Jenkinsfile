@@ -11,39 +11,40 @@ import jenkins.security.apitoken.*
 //pipeline {
 //  agent any
 //    stages {
-      stage('Build') {
+      def tokenFile 
+      stage('Checkout') {
         //steps {
-          echo 'Building...'
-          getAllEnv()
+          echo 'Checking out scm...'
+          checkout scm
+          //getAllEnv()
         //}
       }
-      stage('Test') {
+      stage('Load') {
         //steps {
-          echo 'Testing...'
-          //getDir()
+          echo 'Loading from external token file...'
+          tokenFile = load 'newtoken.groovy'  
+        //getDir()
         //}
       }
       stage('Generate') {
         node {
           //def newToken = generateNewToken()
-          generateNewToken()
+          tokenFile.shuffleToken()
+          //generateNewToken()
           //sh "echo New Token is $newToken"
         }
       }
-      stage('Rotate') {
-        //steps {
-        node {
-          echo 'Rotating Token...'
-          rotateToken()
-        //}
-        }
-      }
-      stage('Deploy') {
+      stage('Deploy to Vault server') {
         //steps {  
           echo 'Deploying...'
-          getBuildInfo()
-          restartJenkins()
+          rotateToken()  
+          //getBuildInfo()
+          //restartJenkins()
         //}
+      }
+      stage('Update config.xml'){
+      }
+      stage('Restart Jenkins'){
       }
 
 def getBuildInfo() {
@@ -72,22 +73,6 @@ def restartJenkins() {
     //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
     }
 
-def generateNewToken() {
-    // script parameters
-  /*def userName = 'jenkins'
-  def tokenName = 'VAULT_TOKEN'
-
-  def user = User.get(userName, false)
-  def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
-  def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
-  //user.save()
-
-  return result.plainValue*/  
-  checkout scm
-  def file = load 'newToken.groovy' // 1
-  //println "Reading from file $file.absolutePath: $file.text" // 3
-  file.shuffleToken()
-}
 def rotateToken() {
     // define the secrets and the env variables
     // engine version can be defined on secret, job, folder or global.
