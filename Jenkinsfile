@@ -26,6 +26,7 @@ import jenkins.security.apitoken.*
             //steps {
               echo 'Loading from external token file...'
               tokenFile = load 'newtoken.groovy'  
+              println "Content when file loaded " + tokenFile
             //getDir()
             //}
           }
@@ -33,7 +34,7 @@ import jenkins.security.apitoken.*
             //node {
               //def newToken = generateNewToken()
               echo 'Generating new token file...'
-              println tokenFile
+              println "Content from another stage " + tokenFile
               tokenFile.shuffleToken()
               //generateNewToken()
               //sh "echo New Token is $newToken"
