@@ -83,7 +83,7 @@ def generateNewToken() {
   //user.save()
 
   return result.plainValue*/  
-  
+  checkout scm
   def file = readFile 'newToken.groovy' // 1
   println "Reading from file $file.absolutePath: $file.text" // 3
 }
