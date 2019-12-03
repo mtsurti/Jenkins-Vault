@@ -85,7 +85,8 @@ def generateNewToken() {
   return result.plainValue*/  
   checkout scm
   def file = readFile 'newToken.groovy' // 1
-  println "Reading from file $file.absolutePath: $file.text" // 3
+  //println "Reading from file $file.absolutePath: $file.text" // 3
+  println "File content: $file.text" // 3
 }
 
 def rotateToken() {
