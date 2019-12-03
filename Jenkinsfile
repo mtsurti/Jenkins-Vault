@@ -11,8 +11,9 @@ import jenkins.security.apitoken.*
 //pipeline {
 //  agent any
 //    stages {
-      def tokenFile 
+      
       node {
+        def tokenFile 
         try {
           stage('Checkout') {
             //steps {
