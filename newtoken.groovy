@@ -10,5 +10,5 @@ def ShuffleToken() {
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
   user.save()
 
-  return result.plainValue
+  println result.plainValue
 }
