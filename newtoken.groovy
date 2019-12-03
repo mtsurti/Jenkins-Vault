@@ -10,6 +10,6 @@ def shuffleToken() {
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
   user.save()*/
   def result = userName.bytes.encodeBase64().toString()
-  println result.plainValue
+  println result
 }
 return this
