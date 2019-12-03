@@ -8,7 +8,8 @@ def shuffleToken() {
   def apiTokenProperty = user.getProperty(ApiTokenProperty.class)
   def result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
   user.save()*/
-  def result = giveRandom() + userName + giveRandom()
+  def tokenSeed = giveRandom() + userName + giveRandom()
+  def result = tokenSeed.bytes.encodeBase64().toString()
   println result
 }
 def giveRandom() {
