@@ -12,3 +12,4 @@ def shuffleToken() {
 
   println result.plainValue
 }
+return this
