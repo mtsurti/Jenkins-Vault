@@ -5,12 +5,15 @@
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
-                scm {
-                      git url: "https://github.com/mtsurti/Jenkins-Vault.git",
-                  credentialsId: 'mtsurti',
-                  branch: master
-                }
-                checkout scm              
+                checkout([
+                      $class: 'GitSCM', 
+                      branches: [[name: '*/master']], 
+                      doGenerateSubmoduleConfigurations: false,
+                      extensions: [],
+                      subModuleCfg: [],
+                      userRemoteConfigs: [[
+                            credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
+                            url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
               //getAllEnv()
           }
           stage('Load') {
