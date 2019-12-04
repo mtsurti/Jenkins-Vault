@@ -35,7 +35,6 @@
             echo 'Updating token...'
             sh "rm " + pwd() + "/current.token"
             sh "echo " + newToken + "> " + pwd() + "/current.token"
-            sh "echo " + pwd() + "/current.token"
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
