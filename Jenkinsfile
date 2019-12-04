@@ -3,7 +3,7 @@
       node {
         def tokenGenerator
         def newToken
-        def workspace = $env.WORKSPACE 
+        def workspace 
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -16,6 +16,7 @@
                             credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
               //getAllEnv()
+              workspace = env.WORKSPACE 
           }
           stage('Load') {
             echo 'Loading from external token file...'  
@@ -31,7 +32,7 @@
           stage('Update Token') {
             //sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
             //sh 'cat $newToken > $env.WORKSPACE/current.token'
-            println 'Workspace is '$workspace
+            println 'Workspace is ' + workspace
             sh 'cat $newToken > $workspace/current.token'    
             //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
