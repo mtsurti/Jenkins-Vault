@@ -51,7 +51,7 @@ import jenkins.security.apitoken.*
           }
           stage('Restart Jenkins'){
             echo 'Retarting Jenkins...'
-            echo 'sh http://localhost:8080/safeRestart'
+            restartJenkins()
           }
         } 
         catch (e) {
@@ -84,6 +84,7 @@ import jenkins.security.apitoken.*
     def restartJenkins() {
         //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
         //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
+      echo 'sh http://localhost:8080/safeRestart'
     }
     def updateConfig() {
         configure {
