@@ -15,25 +15,21 @@
                       userRemoteConfigs: [[
                             credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
-              //getAllEnv()
               workspace = pwd() 
           }
           stage('Load') {
             echo 'Loading from external token file...'  
-            //getDir()
           }
           stage('Generate') {
               echo 'Generating new token file...'
               tokenGenerator = load pwd() + '/newtoken.groovy'  
               newToken = tokenGenerator.shuffleToken()
               println newToken
-              //generateNewToken()
           }
           stage('Update Token') {
             //sh 'echo $newToken > $workspace/current.token'
             sh 'echo $newToken > $workspace/tmp.token'
             sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
-            //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
@@ -58,25 +54,6 @@
             throw e
         }
       }
-    def getBuildInfo() {
-        echo "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
-    }
-    def getDir() {
-        echo "The working directory is ${pwd}"
-    }
-    def readExternalFile() {
-        def env = System.getenv()
-        env.each {
-            println it
-        }
-    }
-
-    def getAllEnv() {
-        def fields = env.getEnvironment()
-            fields.each {
-                key, value -> println("${key} = ${value}");
-        }
-    }
     def restartJenkins() {
         //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
         //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
@@ -131,7 +108,7 @@
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }
-  /*def updateVaultToken() {
+  def updateVaultToken() {
     withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
@@ -142,5 +119,5 @@
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
     }
-  }*/
+  }
    
