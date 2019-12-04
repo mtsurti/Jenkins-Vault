@@ -28,11 +28,11 @@
               //generateNewToken()
           }
           stage('Update Token') {
-            sh 'cat $newToken > load ' + pwd() + '/current.token' 
+            sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            sh 'git add ' load pwd() + '/current.token'
+            sh 'git add ' env.WORKSPACE + '/current.token'
             sh 'git commit -am "Updated token!'
             sh "git push origin master"
           }
