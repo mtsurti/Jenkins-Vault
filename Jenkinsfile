@@ -10,7 +10,6 @@
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
-                //sh 'git remote add upstream https://github.com/mtsurti/Jenkins-Vault' 
                 checkout([
                       $class: 'GitSCM', 
                       branches: [[name: '*/master']], 
