@@ -19,17 +19,16 @@
           }
           stage('Load') {
             echo 'Loading from external token file...'  
+            tokenGenerator = load pwd() + '/newtoken.groovy'  
           }
           stage('Generate') {
               echo 'Generating new token file...'
-              tokenGenerator = load pwd() + '/newtoken.groovy'  
               newToken = tokenGenerator.shuffleToken()
               println newToken
           }
           stage('Update Token') {
-            //sh 'echo $newToken > $workspace/current.token'
-            sh 'echo $newToken > $workspace/tmp.token'
-            sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
+            sh 'cat $newToken' //> $workspace/tmp.token'
+            //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
