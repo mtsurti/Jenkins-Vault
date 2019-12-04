@@ -15,7 +15,7 @@
                       userRemoteConfigs: [[
                             credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
-              workspace = $env.WORKSPACE//pwd() 
+              workspace = pwd() 
           }
           stage('Load') {
             echo 'Loading from external token file...'  
@@ -27,7 +27,7 @@
               println newToken
           }
           stage('Update Token') {
-            sh 'echo $newToken' //> $workspace/tmp.token'
+            sh 'echo $newToken > $workspace/tmp.token'
             //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
           }
           stage('Update SCM') {
