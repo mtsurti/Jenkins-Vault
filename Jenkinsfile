@@ -34,7 +34,7 @@
           stage('Update Token') {
             echo 'Updating token...'
             sh "rm " + pwd() + "/current.token"
-            sh "echo " + newToken + "> " + pwd() + "/current.token"
+            sh "cat " + newToken + "> " + pwd() + "/current.token"
             sh "cat " + pwd() + "/current.token"
           }
           stage('Update SCM') {
