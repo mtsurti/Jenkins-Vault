@@ -1,9 +1,12 @@
 #!/usr/local/bin/groovy
 
       node {
+            environment {
+                  workspace = pwd()
+            }      
         def tokenGenerator
         def newToken
-        def workspace 
+        
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -25,9 +28,12 @@
               echo 'Generating new token file...'
               newToken = tokenGenerator.shuffleToken()
               println newToken
+              println workspace
           }
           stage('Update Token') {
-            //sh 'echo $newToken > $workspace/tmp.token'
+                echo 'Updating token...'
+                println workspace
+                //sh 'echo $newToken > $workspace/tmp.token'
                 sh 'rm ${env.WORKSPACE}/current.token'
                 sh 'cat ${newToken} > ${env.WORKSPACE} /current.token'
             //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
