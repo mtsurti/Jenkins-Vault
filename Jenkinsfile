@@ -30,7 +30,9 @@
               //generateNewToken()
           }
           stage('Update Token') {
-            sh 'echo $newToken > $workspace/current.token'    
+            //sh 'echo $newToken > $workspace/current.token'
+            sh 'echo $newToken > $workspace/tmp.token'
+            sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
             //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
           stage('Update SCM') {
@@ -138,6 +140,7 @@
           export VAULT_SKIP_VERIFY=true
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-rotation/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
+        '''   
     }
   }*/
    
