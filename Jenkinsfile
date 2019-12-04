@@ -38,17 +38,19 @@
             sh "git commit -am \'Updated token!\'"
             sh "git push origin HEAD:master"
           }
-          stage('Deploy to Vault server') {
-              echo 'Deploying to Vault Server...'
-              //updateVaultToken()  
-          }
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
             //updateConfig()
           }
+          stage('Reload config'){
+          }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
             restartJenkins()
+          }
+          stage('Deploy to Vault server') {
+              echo 'Deploying to Vault Server...'
+              //updateVaultToken()  
           }
         } 
         catch (e) {
