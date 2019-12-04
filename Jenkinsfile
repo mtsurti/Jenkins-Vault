@@ -3,7 +3,7 @@
       node {
         def tokenGenerator
         def newToken
-        def workspace = env.WORKSPACE 
+        def workspace = $env.WORKSPACE 
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
