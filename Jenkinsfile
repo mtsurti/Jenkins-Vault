@@ -15,7 +15,7 @@
                       userRemoteConfigs: [[
                             credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
-              workspace = pwd() 
+              workspace = env.WORKSPACE//pwd() 
           }
           stage('Load') {
             echo 'Loading from external token file...'  
