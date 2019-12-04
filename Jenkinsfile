@@ -14,7 +14,7 @@ import jenkins.security.apitoken.*
       
       node {
         def tokenFile 
-      //  try {
+        try {
           stage('Checkout') {
             //steps {
               echo 'Checking out scm...'
@@ -53,10 +53,10 @@ import jenkins.security.apitoken.*
             echo 'Retarting Jenkins...'
             restartJenkins()
           }
-       // } 
-      //  catch (e) {
-     //       throw e
-    //    }
+        } 
+        catch (e) {
+            throw e
+        }
       }
 
     def getBuildInfo() {
