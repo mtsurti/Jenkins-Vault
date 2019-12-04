@@ -3,6 +3,7 @@
       node {
         def tokenGenerator
         def newToken
+        def workspace = env.WORKSPACE 
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -29,12 +30,14 @@
           }
           stage('Update Token') {
             //sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
-            sh 'cat $newToken > $env.WORKSPACE/current.token'
+            //sh 'cat $newToken > $env.WORKSPACE/current.token'
+            println 'Workspace is '$workspace
+            sh 'cat $newToken > $workspace/current.token'    
             //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            sh 'git add $env.WORKSPACE/current.token'
+            sh 'git add $workspace/current.token'
             sh 'git commit -am "Updated token!'
             sh "git push origin master"
           }
