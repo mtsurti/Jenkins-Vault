@@ -42,12 +42,12 @@ import jenkins.security.apitoken.*
           stage('Deploy to Vault server') {
             //steps {  
               echo 'Deploying to Vault Server...'
-              updateVaultToken()  
+              //updateVaultToken()  
             //}
           }
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
-            updateConfig()
+            //updateConfig()
           }
           stage('Restart Jenkins'){
             echo 'Retarting Jenkins...'
