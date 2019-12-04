@@ -35,12 +35,12 @@
                 println workspace
                 //sh 'echo $newToken > $workspace/tmp.token'
                 sh "rm " + pwd() + "/current.token"
-                sh "echo ${newToken} > " + pwd() + "/current.token"
+                sh "echo " + newToken + "> " + pwd() + "/current.token"
             //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            sh 'git add $workspace/current.token'
+            sh "git add " + pwd() + "/current.token"
             sh 'git commit -am "Updated token!'
             sh "git push origin master"
           }
