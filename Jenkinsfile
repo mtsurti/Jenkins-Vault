@@ -1,9 +1,6 @@
 #!/usr/local/bin/groovy
 
-      node {
-            environment {
-                  workspace = pwd()
-            }      
+      node {     
         def tokenGenerator
         def newToken
         
