@@ -10,7 +10,7 @@
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
-                sh 'git remote add upstream https://github.com/mtsurti/Jenkins-Vault' 
+                //sh 'git remote add upstream https://github.com/mtsurti/Jenkins-Vault' 
                 checkout([
                       $class: 'GitSCM', 
                       branches: [[name: '*/master']], 
@@ -35,6 +35,7 @@
             echo 'Updating token...'
             sh "rm " + pwd() + "/current.token"
             sh "echo " + newToken + "> " + pwd() + "/current.token"
+            sh "cat " + pwd() + "/current.token"
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
