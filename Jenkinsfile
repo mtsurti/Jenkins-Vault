@@ -1,7 +1,8 @@
 #!/usr/local/bin/groovy
 
       node {
-        def tokenFile 
+        def tokenGenerator
+        def newToken
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -10,7 +11,6 @@
                       branches: [[name: '*/master']], 
                       doGenerateSubmoduleConfigurations: false,
                       extensions: [],
-                      subModuleCfg: [],
                       userRemoteConfigs: [[
                             credentialsId: 'd1ea6eb0-c66a-4926-817d-597635de0af7',
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
@@ -22,15 +22,19 @@
           }
           stage('Generate') {
               echo 'Generating new token file...'
-              tokenFile = load pwd() + '/newtoken.groovy'  
-              tokenFile.shuffleToken()
+              tokenGenerator = load pwd() + '/newtoken.groovy'  
+              newToken = tokenGenerator.shuffleToken()
+              println newToken
               //generateNewToken()
+          }
+          stage('Update Token') {
+            sh 'cat $newToken > load ' + pwd() + '/current.token' 
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            /*sh 'git add .'
+            sh 'git add current.token'
             sh 'git commit -am "Updated token!'
-            sh "git push origin master"*/
+            sh "git push origin master"
           }
           stage('Deploy to Vault server') {
               echo 'Deploying to Vault Server...'
