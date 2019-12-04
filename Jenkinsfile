@@ -84,7 +84,7 @@ import jenkins.security.apitoken.*
     def restartJenkins() {
         //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
         //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
-      sh 'exec http://localhost:8080/restart'
+      sh 'wget http://localhost:8080/restart'
     }
     def updateConfig() {
         configure {
