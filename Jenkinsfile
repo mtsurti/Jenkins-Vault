@@ -27,7 +27,9 @@
               println newToken
           }
           stage('Update Token') {
-            sh 'echo $newToken > $workspace/tmp.token'
+            //sh 'echo $newToken > $workspace/tmp.token'
+            sh 'rm $workspace/current.token'
+            sh 'echo $newToken > $workspace/current.token'
             //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
           }
           stage('Update SCM') {
