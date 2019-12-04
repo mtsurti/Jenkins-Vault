@@ -30,10 +30,7 @@
               //generateNewToken()
           }
           stage('Update Token') {
-            //sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
-            //sh 'cat $newToken > $env.WORKSPACE/current.token'
-            println 'Workspace is ' + workspace
-            sh 'cat $newToken > $workspace/current.token'    
+            sh 'echo $newToken > $workspace/current.token'    
             //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
           stage('Update SCM') {
