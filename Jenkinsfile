@@ -31,12 +31,9 @@
               println workspace
           }
           stage('Update Token') {
-                echo 'Updating token...'
-                println workspace
-                //sh 'echo $newToken > $workspace/tmp.token'
-                sh "rm " + pwd() + "/current.token"
-                sh "echo " + newToken + "> " + pwd() + "/current.token"
-            //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
+            echo 'Updating token...'
+            sh "rm " + pwd() + "/current.token"
+            sh "echo " + newToken + "> " + pwd() + "/current.token"
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
