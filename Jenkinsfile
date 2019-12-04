@@ -5,7 +5,12 @@
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
-              checkout scm
+                scm {
+                      git url: "https://github.com/mtsurti/Jenkins-Vault.git",
+                  credentialsId: 'mtsurti',
+                  branch: master
+                }
+                checkout scm              
               //getAllEnv()
           }
           stage('Load') {
