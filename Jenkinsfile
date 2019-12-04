@@ -19,10 +19,8 @@
               //generateNewToken()
           }
           stage('Deploy to Vault server') {
-            //steps {  
               echo 'Deploying to Vault Server...'
               //updateVaultToken()  
-            //}
           }
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
@@ -37,15 +35,12 @@
             throw e
         }
       }
-
     def getBuildInfo() {
         echo "Jenkins Job name is ${env.JOB_NAME} and Build # is ${env.BUILD_NUMBER}"
     }
-
     def getDir() {
         echo "The working directory is ${pwd}"
     }
-
     def readExternalFile() {
         def env = System.getenv()
         env.each {
@@ -59,7 +54,6 @@
                 key, value -> println("${key} = ${value}");
         }
     }
-
     def restartJenkins() {
         //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
         //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
