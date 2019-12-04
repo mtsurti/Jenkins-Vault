@@ -28,11 +28,13 @@
               //generateNewToken()
           }
           stage('Update Token') {
-            sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
+            //sh 'cat $newToken > ' + env.WORKSPACE + '/current.token' 
+            sh 'echo $newToken > $env.WORKSPACE/current.token'
+            //sh 'echo version := 1.0.${env.BUILD_ID} >> build.sbt'
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            sh 'git add ' + env.WORKSPACE + '/current.token'
+            sh 'git add $env.WORKSPACE/current.token'
             sh 'git commit -am "Updated token!'
             sh "git push origin master"
           }
