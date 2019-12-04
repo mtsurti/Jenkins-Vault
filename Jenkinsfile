@@ -32,7 +32,7 @@
           }
           stage('Update SCM') {
             echo 'Updating repo with new token...'
-            sh 'git add ' env.WORKSPACE + '/current.token'
+            sh 'git add ' + env.WORKSPACE + '/current.token'
             sh 'git commit -am "Updated token!'
             sh "git push origin master"
           }
