@@ -133,7 +133,7 @@ def rotateToken() {
      //   sh 'echo ADDR=$VAULT_ADDR'
    // }
 }
-  def updateVaultToken() {
+  /*def updateVaultToken() {
     withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
@@ -143,5 +143,5 @@ def rotateToken() {
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-rotation/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
     }
-  }
+  }*/
 }   
