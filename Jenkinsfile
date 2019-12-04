@@ -69,7 +69,7 @@ import jenkins.security.apitoken.*
 
     def readExternalFile() {
         def env = System.getenv()
-        env.each {}
+        env.each {
             println it
         }
     }
