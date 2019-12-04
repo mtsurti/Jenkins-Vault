@@ -42,7 +42,7 @@
             echo 'Updating repo with new token...'
             sh "git add " + pwd() + "/current.token"
             sh "git commit -am \'Updated token!\'"
-            sh "git push origin master"
+            sh "git push origin HEAD:master"
           }
           stage('Deploy to Vault server') {
               echo 'Deploying to Vault Server...'
