@@ -26,6 +26,12 @@
               tokenFile.shuffleToken()
               //generateNewToken()
           }
+          stage('Update SCM') {
+            echo 'Updating repo with new token...'
+            /*sh 'git add .'
+            sh 'git commit -am "Updated token!'
+            sh "git push origin master"*/
+          }
           stage('Deploy to Vault server') {
               echo 'Deploying to Vault Server...'
               //updateVaultToken()  
