@@ -34,8 +34,8 @@
                 echo 'Updating token...'
                 println workspace
                 //sh 'echo $newToken > $workspace/tmp.token'
-                sh 'rm '+ workspace + '/current.token'
-                sh 'cat ${newToken} > ' + workspace + '/current.token'
+                sh "rm " + pwd() + "/current.token"
+                sh "echo ${newToken} > " + pwd() + "/current.token"
             //sh 'rm $workspace/current.token && mv $workspace/tmp.token $workspace/current.token'
           }
           stage('Update SCM') {
