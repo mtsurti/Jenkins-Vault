@@ -41,7 +41,7 @@
           stage('Update SCM') {
             echo 'Updating repo with new token...'
             sh "git add " + pwd() + "/current.token"
-            sh 'git commit -am "Updated token!'
+            sh "git commit -am \'Updated token!\'"
             sh "git push origin master"
           }
           stage('Deploy to Vault server') {
@@ -53,7 +53,7 @@
             //updateConfig()
           }
           stage('Restart Jenkins'){
-            echo 'Retarting Jenkins...'
+            echo 'Restarting Jenkins...'
             restartJenkins()
           }
         } 
