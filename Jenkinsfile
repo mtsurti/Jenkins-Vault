@@ -51,6 +51,7 @@ import jenkins.security.apitoken.*
           }
           stage('Restart Jenkins'){
             echo 'Retarting Jenkins...'
+            echo 'sh http://localhost:8080/safeRestart'
           }
         } 
         catch (e) {
