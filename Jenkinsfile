@@ -1,43 +1,22 @@
 #!/usr/local/bin/groovy
 
-import hudson.model.*
-import jenkins.model.*
-import jenkins.security.*
-import jenkins.security.apitoken.*
-
-//environment {
-  //      SECRET = vault path: 'secrets', key: 'username', vaultUrl: 'https://my-vault.com:8200', credentialsId: 'my-creds', engineVersion: "2"
-//}
-//pipeline {
-//  agent any
-//    stages {
-      
       node {
         def tokenFile 
         try {
           stage('Checkout') {
-            //steps {
               echo 'Checking out scm...'
               checkout scm
               //getAllEnv()
-            //}
           }
           stage('Load') {
-            //steps {
             echo 'Loading from external token file...'  
-              
             //getDir()
-            //}
           }
           stage('Generate') {
-            //node {
-              //def newToken = generateNewToken()
               echo 'Generating new token file...'
               tokenFile = load pwd() + '/newtoken.groovy'  
               tokenFile.shuffleToken()
               //generateNewToken()
-              //sh "echo New Token is $newToken"
-           // }
           }
           stage('Deploy to Vault server') {
             //steps {  
