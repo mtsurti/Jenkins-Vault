@@ -50,9 +50,9 @@ import javax.xml.transform.stream.StreamSource
             sh 'rm ../readConfig.groovy'
           }
           stage('Reload config'){
-            Jenkins.instance.getAllItems(AbstractItem.class).each { 
-                  it.doReload() 
-            };
+            sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
+            readAllConfig()
+            sh 'rm ../reloadConfig.groovy'
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
