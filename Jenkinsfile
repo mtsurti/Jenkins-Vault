@@ -47,6 +47,7 @@ import javax.xml.transform.stream.StreamSource
             //updateConfig()
           }
           stage('Reload config'){
+                reloadCondig()
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
@@ -135,8 +136,8 @@ import javax.xml.transform.stream.StreamSource
       //def job = hudson.model.Hudson.instance.getItem('my-job');
 
       for(job in hudson.model.Hudson.instance.items) {   
-
-          if (job.name == "my-job") {
+          println job.name
+          /*if (job.name == "my-job") {
 
               def configXMLFile = job.getConfigFile();
               def file = configXMLFile.getFile();
@@ -145,7 +146,7 @@ import javax.xml.transform.stream.StreamSource
 
               job.updateByXml(new StreamSource(is));
               job.save();         
-          }      
+          }    */  
       }
       /*
             import jenkins.model.Jenkins;
