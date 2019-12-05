@@ -140,7 +140,7 @@ import javax.xml.transform.stream.StreamSource
       for(job in hudson.model.Hudson.instance.items) {   
           println job.name
           //def prefix = names.substring(0, names.indexOf('-'))
-          def prefix = names.takeWhile { it != '-' }
+          def prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
               def configXMLFile = job.getConfigFile();
               def file = configXMLFile.getFile();
