@@ -7,7 +7,7 @@ import javax.xml.transform.stream.StreamSource
       node {     
         def tokenGenerator
         def newToken
-        
+        def items
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -51,7 +51,8 @@ import javax.xml.transform.stream.StreamSource
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
-            //evaluate(reloadConfig.groovy.text())
+            items = load pwd() + '/reloadConfig.groovy'  
+            items.reloadItems()
             //sh 'rm ../reloadConfig.groovy'
           }      
           stage('Restart Jenkins'){
