@@ -1,4 +1,5 @@
-
- evaluate(Jenkins.instance.getAllItems(AbstractItem.class).each { 
+def reloadItems() {
+  evaluate(Jenkins.instance.getAllItems(AbstractItem.class).each { 
   it.doReload() 
-};)
+  };)
+}
