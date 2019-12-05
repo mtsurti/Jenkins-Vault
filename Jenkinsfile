@@ -52,6 +52,7 @@ import javax.xml.transform.stream.StreamSource
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
             items = load pwd() + '/reloadConfig.groovy'  
+            println items
             items.reloadItems()
             //sh 'rm ../reloadConfig.groovy'
           }      
