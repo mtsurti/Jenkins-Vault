@@ -156,6 +156,7 @@ import javax.xml.transform.stream.StreamSource
       return {
             it / 'properties' / 'hudson.plugins.git.UserRemoteConfig' {
                   'switch'(newToken)
+            }
       }
    }            
       /*
