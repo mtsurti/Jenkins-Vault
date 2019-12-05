@@ -45,14 +45,14 @@ import javax.xml.transform.stream.StreamSource
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
             //updateConfig()
-            sh 'cp readConfig.groovy ../readConfig.groovy'   
+            //sh 'cp readConfig.groovy ../readConfig.groovy'   
             readAllConfig()
-            sh 'rm ../readConfig.groovy'
+            //sh 'rm ../readConfig.groovy'
           }
           stage('Reload config'){
-            sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
-            readAllConfig()
-            sh 'rm ../reloadConfig.groovy'
+            //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
+            //evaluate(reloadConfig.groovy.text())
+            //sh 'rm ../reloadConfig.groovy'
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
