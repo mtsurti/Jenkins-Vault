@@ -146,5 +146,18 @@ import javax.xml.transform.stream.StreamSource
               job.updateByXml(new StreamSource(is));
               job.save();         
           }      
-      } 
+      }
+      /*
+            import jenkins.model.Jenkins;
+
+            def job_path = 'folder1/folder2/job_name'
+
+            Jenkins j = Jenkins.get()
+
+            def job = j.getItemByFullName(job_path)
+
+            if (job) {
+              job.doReload()
+            }
+      */
   }      
