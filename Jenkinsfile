@@ -22,8 +22,8 @@ import javax.xml.transform.stream.StreamSource
               workspace = pwd() 
           }
           stage('Load') {
-            /*echo 'Loading from external token file...'  
-            tokenGenerator = load pwd() + '/newtoken.groovy'  */
+            echo 'Loading from external token file...'  
+            tokenGenerator = load pwd() + '/newtoken.groovy'  
           }
           stage('Generate') {
               echo 'Generating new token file...'
@@ -141,7 +141,7 @@ import javax.xml.transform.stream.StreamSource
           //println job.name
           //def prefix = names.substring(0, names.indexOf('-'))
           def prefix = names.takeWhile { it != '-' }
-          if (prefix != "iaas") {
+          if (prefix == "token") {
               def configXMLFile = job.getConfigFile();
               def file = configXMLFile.getFile();
               println file    
