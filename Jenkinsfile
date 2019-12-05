@@ -45,11 +45,14 @@ import javax.xml.transform.stream.StreamSource
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
             //updateConfig()
+            sh 'cp readConfig.groovy ../readConfig.groovy'   
+            readAllConfig()
+            sh 'rm ../readConfig.groovy'
           }
           stage('Reload config'){
-            sh 'cp readConfig.groovy ../readConfig.groovy'   
-            reloadConfig()
-            sh 'rm ../readConfig.groovy'
+            Jenkins.instance.getAllItems(AbstractItem.class).each { 
+                  it.doReload() 
+            };
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
@@ -130,7 +133,7 @@ import javax.xml.transform.stream.StreamSource
         '''   
     }
   }     
-  def reloadConfig() {
+  def readAllConfig() {
       
       def hudson = hudson.model.Hudson.instance;
 
