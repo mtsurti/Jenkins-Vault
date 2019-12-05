@@ -22,19 +22,14 @@ import javax.xml.transform.stream.StreamSource
               workspace = pwd() 
           }
           stage('Load') {
-            echo 'Loading from external token file...'  
-            tokenGenerator = load pwd() + '/newtoken.groovy'  
+            /*echo 'Loading from external token file...'  
+            tokenGenerator = load pwd() + '/newtoken.groovy'  */
           }
           stage('Generate') {
               echo 'Generating new token file...'
               newToken = tokenGenerator.shuffleToken()
               println newToken
               println workspace
-          }
-          stage('Update Token') {
-            /*echo 'Updating token...'
-            sh "rm " + pwd() + "/current.token"
-            sh "echo " + newToken + "> " + pwd() + "/current.token"*/
           }
           stage('Update SCM') {
             /*echo 'Updating repo with new token...'
@@ -143,17 +138,18 @@ import javax.xml.transform.stream.StreamSource
       //def job = hudson.model.Hudson.instance.getItem('my-job');
 
       for(job in hudson.model.Hudson.instance.items) {   
-          println job.name
-          /*if (job.name == "my-job") {
-
+          //println job.name
+          //def prefix = names.substring(0, names.indexOf('-'))
+          def prefix = names.takeWhile { it != '-' }
+          if (prefix != "iaas") {
               def configXMLFile = job.getConfigFile();
               def file = configXMLFile.getFile();
-
-              InputStream is = new FileInputStream(file);
+              println file    
+              /*InputStream is = new FileInputStream(file);
 
               job.updateByXml(new StreamSource(is));
-              job.save();         
-          }    */  
+              job.save(); */       
+          }     
       }
       /*
             import jenkins.model.Jenkins;
