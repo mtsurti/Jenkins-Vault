@@ -138,7 +138,7 @@ import javax.xml.transform.stream.StreamSource
       //def job = hudson.model.Hudson.instance.getItem('my-job');
 
       for(job in hudson.model.Hudson.instance.items) {   
-          //println job.name
+          println job.name
           //def prefix = names.substring(0, names.indexOf('-'))
           def prefix = names.takeWhile { it != '-' }
           if (prefix == "token") {
