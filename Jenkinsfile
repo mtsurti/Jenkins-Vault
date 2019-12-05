@@ -46,14 +46,14 @@ import javax.xml.transform.stream.StreamSource
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
-            items = load pwd() + '/reloadConfig.groovy'  
+            /*items = load pwd() + '/reloadConfig.groovy'  
             println items
-            items.reloadItems()
+            items.reloadItems()*/
             //sh 'rm ../reloadConfig.groovy'
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
-            restartJenkins()
+            //restartJenkins()
           }
           stage('Deploy to Vault server') {
               echo 'Deploying to Vault Server...'
