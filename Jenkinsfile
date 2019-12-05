@@ -49,6 +49,7 @@ import javax.xml.transform.stream.StreamSource
           stage('Reload config'){
             sh 'cp readConfig.groovy ../readConfig.groovy'   
             reloadConfig()
+            sh 'rm ../readConfig.groovy'
           }      
           stage('Restart Jenkins'){
             echo 'Restarting Jenkins...'
