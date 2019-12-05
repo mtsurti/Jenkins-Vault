@@ -139,22 +139,25 @@ import javax.xml.transform.stream.StreamSource
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
-              def configXMLFile = job.getConfigFile();
-              def file = configXMLFile.getFile();
-              job(job.name) {
-                  configure { node ->
-                  node / builders / 'hudson.tasks.Shell' {
-                  command 'echo "Hello" > ${WORKSPACE}/out.txt'
-        }
-    }
-}
-                  
+              def configXMLFile = job.getConfigFile()
+              def file = configXMLFile.getFile()
               /*InputStream is = new FileInputStream(file);
-
               job.updateByXml(new StreamSource(is));
-              job.save(); */       
-          }     
+              job.save(); */
+              
+              job('job.name') {
+                  configure { node ->
+                    replaceToken('hudson.plugins.git.UserRemoteConfig')
+              }
+          }
+      }         
+   }
+   Closure replaceToken(String nodeName) {
+      return {
+            it / 'properties' / 'hudson.plugins.git.UserRemoteConfig' {
+                  'switch'(newToken)
       }
+   }            
       /*
             import jenkins.model.Jenkins;
 
