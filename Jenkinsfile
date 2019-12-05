@@ -131,20 +131,24 @@ import javax.xml.transform.stream.StreamSource
     }
   }     
   def readAllConfig() {
-      
       def hudson = hudson.model.Hudson.instance;
-
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
-
+      def prefix
       for(job in hudson.model.Hudson.instance.items) {   
-          println job.name
           //def prefix = names.substring(0, names.indexOf('-'))
-          def prefix = job.name.takeWhile { it != '-' }
+          prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
               def configXMLFile = job.getConfigFile();
               def file = configXMLFile.getFile();
-              println file    
+              job(job.name) {
+                  configure { node ->
+                  node / builders / 'hudson.tasks.Shell' {
+                  command 'echo "Hello" > ${WORKSPACE}/out.txt'
+        }
+    }
+}
+                  
               /*InputStream is = new FileInputStream(file);
 
               job.updateByXml(new StreamSource(is));
