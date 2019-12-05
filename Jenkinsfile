@@ -1,4 +1,8 @@
 #!/usr/local/bin/groovy
+import java.io.InputStream;
+import java.io.FileInputStream
+import java.io.File;
+import javax.xml.transform.stream.StreamSource
 
       node {     
         def tokenGenerator
@@ -28,15 +32,15 @@
               println workspace
           }
           stage('Update Token') {
-            echo 'Updating token...'
+            /*echo 'Updating token...'
             sh "rm " + pwd() + "/current.token"
-            sh "echo " + newToken + "> " + pwd() + "/current.token"
+            sh "echo " + newToken + "> " + pwd() + "/current.token"*/
           }
           stage('Update SCM') {
-            echo 'Updating repo with new token...'
+            /*echo 'Updating repo with new token...'
             sh "git add " + pwd() + "/current.token"
             sh "git commit -am \'Updated token!\'"
-            sh "git push origin HEAD:master"
+            sh "git push origin HEAD:master" */
           }
           stage('Update config.xml'){
             echo 'Updating config.xml file with new token...'
@@ -122,5 +126,25 @@
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
     }
-  }
-   
+  }     
+  def reloadConfig() {
+      
+      def hudson = hudson.model.Hudson.instance;
+
+      //to get a single job
+      //def job = hudson.model.Hudson.instance.getItem('my-job');
+
+      for(job in hudson.model.Hudson.instance.items) {   
+
+          if (job.name == "my-job") {
+
+              def configXMLFile = job.getConfigFile();
+              def file = configXMLFile.getFile();
+
+              InputStream is = new FileInputStream(file);
+
+              job.updateByXml(new StreamSource(is));
+              job.save();         
+          }      
+      } 
+  }      
