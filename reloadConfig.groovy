@@ -1,5 +1,5 @@
 def reloadItems() {
-  evaluate(Jenkins.instance.getAllItems(AbstractItem.class).each { 
-  it.doReload() 
-  };)
+  Jenkins.instance.getAllItems(AbstractItem.class).each { 
+    it.doReload() 
+  }
 }
