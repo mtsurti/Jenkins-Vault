@@ -5,10 +5,12 @@ import java.io.File;
 import javax.xml.transform.stream.StreamSource
 import groovy.xml.MarkupBuilder
 
-      node {     
-        def tokenGenerator
-        def newToken
-        def items
+      node {   
+            environment {
+                  def newToken
+                  def tokenGenerator
+                  def items
+            }
         try {
           stage('Checkout') {
               echo 'Checking out scm...'
