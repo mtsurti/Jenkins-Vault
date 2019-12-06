@@ -143,10 +143,10 @@ import groovy.util.XmlParser
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
-      for(job in hudson.model.Hudson.instance.items) {   
+      for (job in hudson.model.Hudson.instance.items) {   
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
-          if (prefix.toLowerCase().contains("token") {
+          if (prefix.toLowerCase().contains("token")) {
               //def configXMLFile = job.getConfigFile()
              /* def file = configXMLFile.getFile()
               def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
