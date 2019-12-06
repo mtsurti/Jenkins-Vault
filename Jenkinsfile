@@ -164,7 +164,7 @@ import groovy.util.XmlParser
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
                         println "this is vbs"
                         n."EnvInjectBuildWrapper".info.propertiesContent.value = n."EnvInjectBuildWrapper".info.propertiesContent.text().replace(oldToken, newToken)
-                        println "[INFO] save changes in config.xml"
+                        println "[INFO] save changes in config.xml"*/
             }
         }    
     }   /*    
@@ -202,7 +202,7 @@ import groovy.util.XmlParser
                         //    because the "/" has a very low precedence (lower than the ".")
                         (it / 'authToken').setValue(newToken)        
                   }
-              //}/*
+              //}
           }
         }
       }         
@@ -219,4 +219,3 @@ import groovy.util.XmlParser
               job.doReload()
             }
       */
-     
