@@ -139,13 +139,15 @@ import javax.xml.transform.stream.StreamSource
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
-              //def configXMLFile = job.getConfigFile()
-              //def file = configXMLFile.getFile()
+              def configXMLFile = job.getConfigFile()
+              def file = configXMLFile.getFile()
+              println "config file is " + file
               /*InputStream is = new FileInputStream(file);
               job.updateByXml(new StreamSource(is));
               job.save(); */
               
-              job('job.name') {
+              job(job.name) {
+                  println "Job is " + job.name
                   configure { 
                         it / 'authToken'.setValue(newToken) 
                   }         
