@@ -182,7 +182,7 @@ import groovy.util.XmlParser
               
               job(job.name) {
                   println "Job is " + job.name
-                  configure { it ->
+                  configure {
                         // "it" is a groovy.util.Node
                         //    representing the job's config.xml's root "project" element.
                         // anotherNode is also groovy.util.Node
