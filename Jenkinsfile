@@ -147,9 +147,7 @@ import javax.xml.transform.stream.StreamSource
               
               job('job.name') {
                   configure { node ->
-                        node / 'authToken' {
-                        'authToken'(newToken)
-                        }
+                        node / 'authToken'.setValue(newToken) 
                   }         
               }
           }
