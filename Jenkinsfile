@@ -181,9 +181,9 @@ import groovy.util.XmlParser
               }
               //println "config file is " + file
               InputStream is = new FileInputStream(file)
-              job.updateByXml(new StreamSource(is))
-              job.save()
-              job.doReload() 
+              thisJob.updateByXml(new StreamSource(is))
+              thisJob.save()
+              thisJob.doReload() 
               
               //job(thisJob.name) {
                   /*println "Job is " + thisJob.name
