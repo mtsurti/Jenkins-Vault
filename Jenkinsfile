@@ -180,13 +180,9 @@ import groovy.util.XmlParser
               job.save()
               job.doReload()  */
               
-              /*//job(job.name) {
+              job(job.name) {
                   println "Job is " + job.name
-                  configure { 
-                        it / 'authToken'.setValue(newToken) 
-                  }         
-              }*/
-              configure {
+                  configure {
                   // "it" is a groovy.util.Node
                   //    representing the job's config.xml's root "project" element.
                   // anotherNode is also groovy.util.Node
@@ -199,7 +195,7 @@ import groovy.util.XmlParser
                   // You can chain these steps,
                   //    but must add wrapping parenthesis
                   //    because the "/" has a very low precedence (lower than the ".")
-                  (it / 'authToken').setValue(newToken)
+                  (it / 'authToken').setValue(newToken)        
               }
           }
       //}         
