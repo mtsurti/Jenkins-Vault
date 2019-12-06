@@ -181,7 +181,7 @@ import groovy.util.XmlParser
               job.doReload()  */
               
               //job(thisJob.name) {
-               //   println "Job is " + thisJob.name
+                  println "Job is " + thisJob.name
                   configure {
                         // "it" is a groovy.util.Node
                         //    representing the job's config.xml's root "project" element.
