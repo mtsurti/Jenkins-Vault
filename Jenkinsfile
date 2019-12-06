@@ -141,17 +141,21 @@ import javax.xml.transform.stream.StreamSource
           if (prefix == "token") {
               def configXMLFile = job.getConfigFile()
               def file = configXMLFile.getFile()
-              println "config file is " + file
-              /*InputStream is = new FileInputStream(file);
-              job.updateByXml(new StreamSource(is));
-              job.save(); */
+              def tree = new XmlParser().parse(file)
+              println tree
+                //tree.setValue(newToken)
+              //println "config file is " + file
+              //InputStream is = new FileInputStream(file)
+              //job.updateByXml(new StreamSource(is))
+              //job.save()
+              //job.doReload()  
               
-              job(job.name) {
+              /*job(job.name) {
                   println "Job is " + job.name
                   configure { 
                         it / 'authToken'.setValue(newToken) 
                   }         
-              }
+              }*/
           }
       }         
    }  
