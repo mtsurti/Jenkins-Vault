@@ -143,9 +143,9 @@ import groovy.util.XmlParser
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
-      for (job in hudson.model.Hudson.instance.items) {   
+      for (thisJob in hudson.model.Hudson.instance.items) {   
           //def prefix = names.substring(0, names.indexOf('-'))
-          prefix = job.name.takeWhile { it != '-' }
+          prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token")) {
               //def configXMLFile = job.getConfigFile()
              /* def file = configXMLFile.getFile()
@@ -180,8 +180,8 @@ import groovy.util.XmlParser
               job.save()
               job.doReload()  */
               
-              job(job.name) {
-                  println "Job is " + job.name
+              job(thisJob.name) {
+                  println "Job is " + thisJob.name
                   configure {
                         // "it" is a groovy.util.Node
                         //    representing the job's config.xml's root "project" element.
