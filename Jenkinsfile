@@ -153,7 +153,7 @@ import groovy.xml.MarkupBuilder
                   }
                       println currentNode.text()
                 }
-              //}
+               }
               }
               //println "config file is " + file
               //InputStream is = new FileInputStream(file)
