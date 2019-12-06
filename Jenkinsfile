@@ -147,11 +147,11 @@ import groovy.util.XmlParser
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token")) {
-              //def configXMLFile = job.getConfigFile()
+              def configXMLFile = job.getConfigFile()
               def file = configXMLFile.getFile()
               def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
-              def iterator = rootNode.iterator()
+              //def iterator = rootNode.iterator()
               def currentNode
 
              /* Use the same syntax as groovy.xml.MarkupBuilder */
