@@ -140,11 +140,17 @@ import groovy.xml.MarkupBuilder
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
-              def configXMLFile = job.getConfigFile()
-              def file = configXMLFile.getFile()
-              def tree = new XmlParser().parse(file)
-              println tree.text()
-                //tree.setValue(newToken)
+              //def configXMLFile = job.getConfigFile()
+              //def file = configXMLFile.getFile()
+              def rootNode = new XmlParser().parse(job.getConfigFile().getFile())
+              //def rootNode = new XmlSlurper().parseText(job.getConfigFile().getFile())
+              def iterator = rootNode.iterator()
+              while iterator.hasNext() {   
+                  println iterator.next()
+                    //if iterator.next() == 'authToken' {
+                  //      rootNode.setValue(newToken)  
+                 }
+              }
               //println "config file is " + file
               //InputStream is = new FileInputStream(file)
               //job.updateByXml(new StreamSource(is))
