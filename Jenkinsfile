@@ -142,7 +142,7 @@ import javax.xml.transform.stream.StreamSource
               def configXMLFile = job.getConfigFile()
               def file = configXMLFile.getFile()
               def tree = new XmlParser().parse(file)
-              println tree
+              println tree.text()
                 //tree.setValue(newToken)
               //println "config file is " + file
               //InputStream is = new FileInputStream(file)
