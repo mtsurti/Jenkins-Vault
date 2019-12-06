@@ -148,13 +148,18 @@ import groovy.util.XmlParser
           prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token")) {
               //def configXMLFile = job.getConfigFile()
-             /* def file = configXMLFile.getFile()
+              def file = configXMLFile.getFile()
               def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
               def iterator = rootNode.iterator()
               def currentNode
+
+             /* Use the same syntax as groovy.xml.MarkupBuilder */
+             rootNode.value.authToken.replaceNode { 
+                   authToken(newToken)
+             }
               
-              def nodeToModify = rootNode.buildWrappers.findAll { n -> 
+              /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
                         println "this is vbs"
@@ -162,7 +167,7 @@ import groovy.util.XmlParser
                         println "[INFO] save changes in config.xml"
             }
         }    
-    }       
+    }   /*    
               
               /*while (iterator.hasNext()) {   
                   currentNode = iterator.next()
@@ -171,17 +176,17 @@ import groovy.util.XmlParser
                         println "Updated the value for " + currentNode.name() + " with " + currentNode.get('authToken')
                   }
               }*/
-              /*file.withWriter { w ->
+              file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
               }
               //println "config file is " + file
               InputStream is = new FileInputStream(file)
               job.updateByXml(new StreamSource(is))
               job.save()
-              job.doReload()  */
+              job.doReload() 
               
               //job(thisJob.name) {
-                  println "Job is " + thisJob.name
+                  /*println "Job is " + thisJob.name
                   configure {
                         // "it" is a groovy.util.Node
                         //    representing the job's config.xml's root "project" element.
@@ -197,7 +202,7 @@ import groovy.util.XmlParser
                         //    because the "/" has a very low precedence (lower than the ".")
                         (it / 'authToken').setValue(newToken)        
                   }
-              //}
+              //}/*
           }
         }
       }         
