@@ -46,11 +46,29 @@ import groovy.util.XmlParser
             sh "git push origin HEAD:master" */
           }
           stage('Update config.xml'){
-            echo 'Updating config.xml file with new token...'
+            /*echo 'Updating config.xml file with new token...'
             //updateConfig()
             //sh 'cp readConfig.groovy ../readConfig.groovy'   
             updateAllConfigs()
-            //sh 'rm ../readConfig.groovy'
+            //sh 'rm ../readConfig.groovy'*/
+            job(job.name) {
+                  println "Job is " + job.name
+                  configure {
+                        // "it" is a groovy.util.Node
+                        //    representing the job's config.xml's root "project" element.
+                        // anotherNode is also groovy.util.Node
+                        //    obtained with the overloaded "/" operator
+                        //    on which we can call "setValue(...)"
+                        def aNode = it
+                        def anotherNode = aNode / 'authToken'
+                        anotherNode.setValue(newToken)
+
+                        // You can chain these steps,
+                        //    but must add wrapping parenthesis
+                        //    because the "/" has a very low precedence (lower than the ".")
+                        (it / 'authToken').setValue(newToken)        
+                  }
+              }
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
