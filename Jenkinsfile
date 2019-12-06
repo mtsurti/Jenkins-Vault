@@ -149,8 +149,8 @@ import groovy.xml.MarkupBuilder
                   println iterator.next()
                     //if iterator.next() == 'authToken' {
                   //      rootNode.setValue(newToken)  
-                 }
               }
+           }
               //println "config file is " + file
               //InputStream is = new FileInputStream(file)
               //job.updateByXml(new StreamSource(is))
