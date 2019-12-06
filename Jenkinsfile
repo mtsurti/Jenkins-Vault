@@ -145,10 +145,14 @@ import groovy.xml.MarkupBuilder
               def rootNode = new XmlParser().parse(job.getConfigFile().getFile())
               //def rootNode = new XmlSlurper().parseText(job.getConfigFile().getFile())
               def iterator = rootNode.iterator()
-              while (iterator.hasNext()) {   
-                  println iterator.next()
-                    //if iterator.next() == 'authToken' {
-                  //      rootNode.setValue(newToken)  
+              def currentNode
+                while (iterator.hasNext()) {   
+                  currentNode = iterator.next()
+                  if (currentNode == 'authToken') {
+                        currentNode.setValue(newToken)
+                  }
+                      println currentNode.text()
+                }
               //}
               }
               //println "config file is " + file
