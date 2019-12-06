@@ -148,10 +148,10 @@ import groovy.xml.MarkupBuilder
               def currentNode
                 while (iterator.hasNext()) {   
                   currentNode = iterator.next()
+                      println currentNode.value()
                   if (currentNode == 'authToken') {
                         currentNode.setValue(newToken)
                   }
-                      println currentNode.text()
                 }
 
               //println "config file is " + file
