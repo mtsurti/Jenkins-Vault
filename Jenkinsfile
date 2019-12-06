@@ -202,7 +202,7 @@ import groovy.util.XmlParser
                   (it / 'authToken').setValue(newToken)
               }
           }
-      }         
+      //}         
    }  
       /*
             import jenkins.model.Jenkins;
