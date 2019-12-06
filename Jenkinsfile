@@ -197,7 +197,7 @@ import groovy.util.XmlParser
                   //    because the "/" has a very low precedence (lower than the ".")
                   (it / 'authToken').setValue(newToken)        
               }
-          }
+          //}
       //}         
   // }  
       /*
