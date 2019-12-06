@@ -149,7 +149,7 @@ import groovy.util.XmlParser
           if (prefix.toLowerCase().contains("token")) {
               def configXMLFile = job.getConfigFile()
               def file = configXMLFile.getFile()
-              def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
+              def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
               //def iterator = rootNode.iterator()
               def currentNode
