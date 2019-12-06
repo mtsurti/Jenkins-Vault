@@ -4,6 +4,11 @@ import java.io.FileInputStream
 import java.io.File;
 import javax.xml.transform.stream.StreamSource
 import groovy.xml.MarkupBuilder
+import hudson.model.*
+import jenkins.model.Jenkins
+import groovy.xml.XmlUtil
+import static javax.xml.xpath.XPathConstants.*
+import groovy.util.XmlParser
 
       node {   
             environment {
@@ -138,36 +143,64 @@ import groovy.xml.MarkupBuilder
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
-      for(job in hudson.model.Hudson.instance.items) {   
+      /*for(job in hudson.model.Hudson.instance.items) {   
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
-          if (prefix == "token") {
+          if (prefix.toLowerCase().contains("token") {
               //def configXMLFile = job.getConfigFile()
-              //def file = configXMLFile.getFile()
-              def rootNode = new XmlParser().parse(job.getConfigFile().getFile())
-              //def rootNode = new XmlSlurper().parseText(job.getConfigFile().getFile())
+              def file = configXMLFile.getFile()
+              def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
+              //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
               def iterator = rootNode.iterator()
               def currentNode
-                while (iterator.hasNext()) {   
+              
+              def nodeToModify = rootNode.buildWrappers.findAll { n -> 
+              if (n."EnvInjectBuildWrapper".info.propertiesContent) {
+                  if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
+                        println "this is vbs"
+                        n."EnvInjectBuildWrapper".info.propertiesContent.value = n."EnvInjectBuildWrapper".info.propertiesContent.text().replace(oldToken, newToken)
+                        println "[INFO] save changes in config.xml"
+            }
+        }    
+    }       
+              
+              /*while (iterator.hasNext()) {   
                   currentNode = iterator.next()
-                  if (currentNode.name() == 'authToken') {
-                        currentNode.setValue(newToken)
+                  if (currentNode.name().toLowerCase().contains("authToken")) {
+                        //currentNode.setValue(newToken)
                         println "Updated the value for " + currentNode.name() + " with " + currentNode.get('authToken')
                   }
-                }
-
+              }*/
+              /*file.withWriter { w ->
+                  w.write(XmlUtil.serialize(rootNode))
+              }
               //println "config file is " + file
-              //InputStream is = new FileInputStream(file)
-              //job.updateByXml(new StreamSource(is))
-              //job.save()
-              //job.doReload()  
+              InputStream is = new FileInputStream(file)
+              job.updateByXml(new StreamSource(is))
+              job.save()
+              job.doReload()  */
               
-              /*job(job.name) {
+              /*//job(job.name) {
                   println "Job is " + job.name
                   configure { 
                         it / 'authToken'.setValue(newToken) 
                   }         
               }*/
+              configure {
+                  // "it" is a groovy.util.Node
+                  //    representing the job's config.xml's root "project" element.
+                  // anotherNode is also groovy.util.Node
+                  //    obtained with the overloaded "/" operator
+                  //    on which we can call "setValue(...)"
+                  def aNode = it
+                  def anotherNode = aNode / 'authToken'
+                  anotherNode.setValue(newToken)
+
+                  // You can chain these steps,
+                  //    but must add wrapping parenthesis
+                  //    because the "/" has a very low precedence (lower than the ".")
+                  (it / 'authToken').setValue(newToken)
+              }
           }
       }         
    }  
