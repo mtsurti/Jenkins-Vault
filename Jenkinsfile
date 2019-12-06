@@ -139,11 +139,11 @@ import groovy.util.XmlParser
     }
   }     
   def updateAllConfigs() {
-      def hudson = hudson.model.Hudson.instance;
+      /*def hudson = hudson.model.Hudson.instance;
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
-      /*for(job in hudson.model.Hudson.instance.items) {   
+      for(job in hudson.model.Hudson.instance.items) {   
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token") {
@@ -183,22 +183,22 @@ import groovy.util.XmlParser
               job(job.name) {
                   println "Job is " + job.name
                   configure {
-                  // "it" is a groovy.util.Node
-                  //    representing the job's config.xml's root "project" element.
-                  // anotherNode is also groovy.util.Node
-                  //    obtained with the overloaded "/" operator
-                  //    on which we can call "setValue(...)"
-                  def aNode = it
-                  def anotherNode = aNode / 'authToken'
-                  anotherNode.setValue(newToken)
+                        // "it" is a groovy.util.Node
+                        //    representing the job's config.xml's root "project" element.
+                        // anotherNode is also groovy.util.Node
+                        //    obtained with the overloaded "/" operator
+                        //    on which we can call "setValue(...)"
+                        def aNode = it
+                        def anotherNode = aNode / 'authToken'
+                        anotherNode.setValue(newToken)
 
-                  // You can chain these steps,
-                  //    but must add wrapping parenthesis
-                  //    because the "/" has a very low precedence (lower than the ".")
-                  (it / 'authToken').setValue(newToken)        
+                        // You can chain these steps,
+                        //    but must add wrapping parenthesis
+                        //    because the "/" has a very low precedence (lower than the ".")
+                        (it / 'authToken').setValue(newToken)        
+                  }
               }
-          //}
-      //}         
+      }         
   // }  
       /*
             import jenkins.model.Jenkins;
