@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.io.FileInputStream
 import java.io.File;
 import javax.xml.transform.stream.StreamSource
+import groovy.xml.MarkupBuilder
 
       node {     
         def tokenGenerator
