@@ -147,14 +147,14 @@ import javax.xml.transform.stream.StreamSource
               
               job('job.name') {
                   configure { node ->
-                    node / 'authToken' {
+                        node / 'authToken' {
                         'authToken'(newToken)
-                    }
-                  }      
+                        }
+                  }         
               }
           }
       }         
-   }       
+   }  
       /*
             import jenkins.model.Jenkins;
 
