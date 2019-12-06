@@ -49,26 +49,8 @@ import groovy.util.XmlParser
             /*echo 'Updating config.xml file with new token...'
             //updateConfig()
             //sh 'cp readConfig.groovy ../readConfig.groovy'   
-            updateAllConfigs()
             //sh 'rm ../readConfig.groovy'*/
-            job(job.name) {
-                  println "Job is " + job.name
-                  configure {
-                        // "it" is a groovy.util.Node
-                        //    representing the job's config.xml's root "project" element.
-                        // anotherNode is also groovy.util.Node
-                        //    obtained with the overloaded "/" operator
-                        //    on which we can call "setValue(...)"
-                        def aNode = it
-                        def anotherNode = aNode / 'authToken'
-                        anotherNode.setValue(newToken)
-
-                        // You can chain these steps,
-                        //    but must add wrapping parenthesis
-                        //    because the "/" has a very low precedence (lower than the ".")
-                        (it / 'authToken').setValue(newToken)        
-                  }
-              }
+            updateAllConfigs()
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
@@ -157,7 +139,7 @@ import groovy.util.XmlParser
     }
   }     
   def updateAllConfigs() {
-      /*def hudson = hudson.model.Hudson.instance;
+      def hudson = hudson.model.Hudson.instance;
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
@@ -166,7 +148,7 @@ import groovy.util.XmlParser
           prefix = job.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token") {
               //def configXMLFile = job.getConfigFile()
-              def file = configXMLFile.getFile()
+             /* def file = configXMLFile.getFile()
               def rootNode = new XMLParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
               def iterator = rootNode.iterator()
@@ -216,8 +198,9 @@ import groovy.util.XmlParser
                         (it / 'authToken').setValue(newToken)        
                   }
               }
+          }
+        }
       }         
-  // }  
       /*
             import jenkins.model.Jenkins;
 
