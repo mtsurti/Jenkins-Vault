@@ -139,8 +139,8 @@ import javax.xml.transform.stream.StreamSource
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = job.name.takeWhile { it != '-' }
           if (prefix == "token") {
-              def configXMLFile = job.getConfigFile()
-              def file = configXMLFile.getFile()
+              //def configXMLFile = job.getConfigFile()
+              //def file = configXMLFile.getFile()
               /*InputStream is = new FileInputStream(file);
               job.updateByXml(new StreamSource(is));
               job.save(); */
