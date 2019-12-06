@@ -149,7 +149,7 @@ import groovy.xml.MarkupBuilder
                 while (iterator.hasNext()) {   
                   currentNode = iterator.next()
                       println currentNode.value()
-                  if (currentNode == 'authToken') {
+                  if (currentNode.localText() == 'authToken') {
                         currentNode.setValue(newToken)
                   }
                 }
