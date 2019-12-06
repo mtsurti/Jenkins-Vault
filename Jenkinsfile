@@ -41,7 +41,7 @@ import javax.xml.transform.stream.StreamSource
             echo 'Updating config.xml file with new token...'
             //updateConfig()
             //sh 'cp readConfig.groovy ../readConfig.groovy'   
-            readAllConfig()
+            updateAllConfigs()
             //sh 'rm ../readConfig.groovy'
           }
           stage('Reload config'){
@@ -130,7 +130,7 @@ import javax.xml.transform.stream.StreamSource
         '''   
     }
   }     
-  def readAllConfig() {
+  def updateAllConfigs() {
       def hudson = hudson.model.Hudson.instance;
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
@@ -147,18 +147,14 @@ import javax.xml.transform.stream.StreamSource
               
               job('job.name') {
                   configure { node ->
-                    replaceToken('hudson.plugins.git.UserRemoteConfig')
+                    node / 'authToken' {
+                        'authToken'(newToken)
+                    }
+                  }      
               }
           }
       }         
-   }
-   Closure replaceToken(String nodeName) {
-      return {
-            it / 'properties' / 'hudson.plugins.git.UserRemoteConfig' {
-                  'switch'(newToken)
-            }
-      }
-   }            
+   }       
       /*
             import jenkins.model.Jenkins;
 
