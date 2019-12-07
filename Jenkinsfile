@@ -151,8 +151,10 @@ import groovy.util.XmlParser
               def file = configXMLFile.getFile()
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               def rootNode = new XmlParser().parse(file)
-              //def iterator = rootNode.iterator()
-              println rootNode.authToken.text()
+              def iterator = rootNode.iterator()
+              while (iterator.hasNext()) {   
+                    println iterator.next()
+              }      
               Node newNode = rootNode.authToken.clone()
               newNode.setValue(newToken)
               def modifiedNode = rootNode.authToken.replaceNode(newNode)
