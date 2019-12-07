@@ -144,6 +144,7 @@ import groovy.util.XmlParser
                       Node newNode = currentNode
                       newNode.setValue(newToken)
                       def modifiedNode = currentNode.authToken.replaceNode(newNode)
+                      println "Updated new token in " + modifiedNode.name() + " with " + modifiedNode.text()
                   }
               }   
               
@@ -160,6 +161,7 @@ import groovy.util.XmlParser
               
               file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
+                  //w.write(XmlUtil.serialize(currentNode))
               }
               //println "config file is " + file
               InputStream is = new FileInputStream(file)
