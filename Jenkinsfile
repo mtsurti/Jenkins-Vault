@@ -152,14 +152,10 @@ import groovy.util.XmlParser
               def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parseText(file)
               //def iterator = rootNode.iterator()
-              def currentNode
 
-              /* Use the same syntax as groovy.xml.MarkupBuilder */
               Node newNode = rootNode.authToken.clone()
               newNode.setValue(newToken)
-              rootNode.authToken.replaceNode {
-                      authToken(newNode)
-              }
+              def modifiedNode = rootNode.authToken.replaceNode(newNode)
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
@@ -170,7 +166,9 @@ import groovy.util.XmlParser
                   }    
               } */     
               
-              /*while (iterator.hasNext()) {   
+              /*
+                def currentNode
+                while (iterator.hasNext()) {   
                   currentNode = iterator.next()
                   if (currentNode.name().toLowerCase().contains("authToken")) {
                         //currentNode.setValue(newToken)
