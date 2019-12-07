@@ -140,6 +140,7 @@ import groovy.util.XmlParser
               def currentNode
               while (iterator.hasNext()) {   
                 currentNode = iterator.next()
+                println currentNode.name() + " " + currentNode.text()
                 if (currentNode.name().toLowerCase().contains("authToken")) {
                       Node newNode = currentNode
                       newNode.setValue(newToken)
