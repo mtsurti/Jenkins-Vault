@@ -157,8 +157,9 @@ import groovy.util.XmlParser
               /* Use the same syntax as groovy.xml.MarkupBuilder */
               Node newNode = rootNode.authToken.clone()
               newNode.setValue(newToken)
-              rootNode.authToken.replaceNode(newNode)
-              
+              rootNode.authToken.replaceNode {
+                      authToken(newNode)
+              }
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
