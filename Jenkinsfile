@@ -149,13 +149,13 @@ import groovy.util.XmlParser
           if (prefix.toLowerCase().contains("token")) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
-              def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
-              //def rootNode = new XmlParser().parseText(job.getConfigFile().getFile().getText('UTF-8'))
+              //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
+              def rootNode = new XmlParser().parseText(file)
               //def iterator = rootNode.iterator()
               def currentNode
 
              /* Use the same syntax as groovy.xml.MarkupBuilder */
-             rootNode.authToken.replaceNode { 
+             rootNode.flow-definition.authToken.replaceNode { 
                    authToken(newToken)
              }
               
