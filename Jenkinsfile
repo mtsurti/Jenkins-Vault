@@ -77,23 +77,7 @@ import groovy.util.XmlParser
         //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
       sh 'wget http://localhost:8080/restart'
     }
-    def updateConfig() {
-        configure {
-        // "it" is a groovy.util.Node
-        //    representing the job's config.xml's root "project" element.
-        // anotherNode is also groovy.util.Node
-        //    obtained with the overloaded "/" operator
-        //    on which we can call "setValue(...)"
-        def aNode = it
-        def anotherNode = aNode / 'blockBuildWhenDownstreamBuilding'
-        anotherNode.setValue('true')
 
-        // You can chain these steps,
-        //    but must add wrapping parenthesis
-        //    because the "/" has a very low precedence (lower than the ".")
-        (it / 'blockBuildWhenUpstreamBuilding').setValue('true')
-        }
-    }
     def rotateToken() {
         // define the secrets and the env variables
         // engine version can be defined on secret, job, folder or global.
@@ -152,12 +136,17 @@ import groovy.util.XmlParser
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               def rootNode = new XmlParser().parse(file)
               def iterator = rootNode.iterator()
+              
+              def currentNode
               while (iterator.hasNext()) {   
-                    println iterator.next()
-              }      
-              Node newNode = rootNode.authToken.clone()
-              newNode.setValue(newToken)
-              def modifiedNode = rootNode.authToken.replaceNode(newNode)
+                currentNode = iterator.next()
+                if (currentNode.name().toLowerCase().contains("authToken")) {
+                      Node newNode = currentNode
+                      newNode.setValue(newToken)
+                      def modifiedNode = currentNode.authToken.replaceNode(newNode)
+                  }
+              }   
+              
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
@@ -168,15 +157,7 @@ import groovy.util.XmlParser
                   }    
               } */     
               
-              /*
-                def currentNode
-                while (iterator.hasNext()) {   
-                  currentNode = iterator.next()
-                  if (currentNode.name().toLowerCase().contains("authToken")) {
-                        //currentNode.setValue(newToken)
-                        println "Updated the value for " + currentNode.name() + " with " + currentNode.get('authToken')
-                  }
-              }*/
+              
               file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
               }
