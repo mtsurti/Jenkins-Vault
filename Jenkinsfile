@@ -155,7 +155,7 @@ import groovy.util.XmlParser
               def currentNode
 
              /* Use the same syntax as groovy.xml.MarkupBuilder */
-             rootNode.value.authToken.replaceNode { 
+             rootNode.authToken.replaceNode { 
                    authToken(newToken)
              }
               
