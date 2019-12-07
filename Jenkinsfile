@@ -154,10 +154,10 @@ import groovy.util.XmlParser
               //def iterator = rootNode.iterator()
               def currentNode
 
-             /* Use the same syntax as groovy.xml.MarkupBuilder */
-             rootNode.flow-definition.authToken.replaceNode { 
-                   authToken(newToken)
-             }
+              /* Use the same syntax as groovy.xml.MarkupBuilder */
+              Node newNode = rootNode.authToken.clone()
+              newNode.setValue(newToken)
+              rootNode.authToken.replaceNode(newNode)
               
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
