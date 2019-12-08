@@ -13,9 +13,11 @@ def updateAllConfigs(String token) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               file.eachLine { line ->
-                    //println "Just printing ->" + line
                     if (line.trim().contains("authToken")) {
-                        println line
+                       println "<authToken>" + token + "/<authToken>"  
+                    }
+                    else {
+                        println line                        
                     }
               }
               def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
