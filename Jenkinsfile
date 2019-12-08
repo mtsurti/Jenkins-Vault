@@ -134,13 +134,8 @@ import groovy.util.XmlParser
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               println "Initially Config.xml file is: "
-              //file.eachLine { line ->
-              //    println line
-              //}
-                file.withReader { reader ->
-                  while ((line = reader.readLine()) != null) {
-                        println "${line}"
-                  }
+              file.eachLine { line ->
+                  println line
               }
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               def rootNode = new XmlParser().parse(file)
@@ -149,6 +144,7 @@ import groovy.util.XmlParser
               def currentNode
               while (iterator.hasNext()) {   
                 currentNode = iterator.next()
+                println "Iterating over contents of the config file..."
                 println currentNode.name() + " " + currentNode.text()
                 if (currentNode.name().toLowerCase().contains("authToken")) {
                       Node newNode = currentNode
@@ -158,13 +154,8 @@ import groovy.util.XmlParser
                   }
               }   
               println "Finally Config.xml file is: "
-              //file.eachLine { line ->
-              //    println line
-              //}
-              file.withReader { reader ->
-                  while ((line = reader.readLine()) != null) {
-                        println "${line}"
-                  }
+              file.eachLine { line ->
+                  println line
               }
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
