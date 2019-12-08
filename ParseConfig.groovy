@@ -16,7 +16,7 @@ def updateAllConfigs(String token) {
                     if (line.trim().contains("authToken")) {
                        file.withWriter('utf-8') { writer ->
                              writer.writeLine "  <authToken>" + token + "</authToken>"  
-                    }
+                        }
                     else {
                         file.withWriter('utf-8') { writer ->
                              writer.writeLine line
