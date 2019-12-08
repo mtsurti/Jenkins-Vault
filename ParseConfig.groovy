@@ -14,13 +14,16 @@ def updateAllConfigs(String token) {
               def file = configXMLFile.getFile()
               file.eachLine { line ->
                     if (line.trim().contains("authToken")) {
-                       println "  <authToken>" + token + "</authToken>"  
+                       file.withWriter('utf-8') { writer ->
+                             writer.writeLine "  <authToken>" + token + "</authToken>"  
                     }
                     else {
-                        println line                        
+                        file.withWriter('utf-8') { writer ->
+                             writer.writeLine line
+                        }
                     }
               }
-              def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
+              //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parse(file)
               /*def iterator = rootNode.iterator()
               
@@ -50,12 +53,12 @@ def updateAllConfigs(String token) {
               /*file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
                   //w.write(XmlUtil.serialize(currentNode))
-              }
+              }*/
               //println "config file is " + file
               InputStream is = new FileInputStream(file)
               thisJob.updateByXml(new StreamSource(is))
               thisJob.save()
-              thisJob.doReload() */
+              thisJob.doReload() 
               
               /*println "Finally Config.xml file is: "
               file.eachLine { line ->
