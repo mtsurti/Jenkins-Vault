@@ -148,7 +148,10 @@ import groovy.util.XmlParser
                       println "Updated new token in " + modifiedNode.name() + " with " + modifiedNode.text()
                   }
               }   
-              
+              println "Config.xml file is: "
+              file.eachLine { line ->
+                  println line
+              }                 
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
