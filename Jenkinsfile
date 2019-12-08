@@ -35,27 +35,27 @@ import groovy.util.XmlParser
             tokenGenerator = load pwd() + '/newtoken.groovy'  
           }
           stage('Generate') {
-              echo 'Generating new token file...'
+              echo 'Generating new token...'
               newToken = tokenGenerator.shuffleToken()
               println newToken
           }
-          stage('Update config.xml'){
+          stage('Update config.xml...'){
             //echo 'Updating config.xml file with new token...'
            configParser = load pwd() + '/ParseConfig.groovy'  
            configParser.updateAllConfigs(newToken)
           }
-          stage('Reload config'){
+          stage('Reload config...'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
             /*items = load pwd() + '/reloadConfig.groovy'  
             println items
             items.reloadItems()*/
             //sh 'rm ../reloadConfig.groovy'
           }      
-          stage('Restart Jenkins'){
+          stage('Restart Jenkins...'){
             echo 'Restarting Jenkins...'
             //restartJenkins()
           }
-          stage('Deploy to Vault server') {
+          stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               //updateVaultToken()  
           }
