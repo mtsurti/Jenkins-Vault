@@ -134,8 +134,13 @@ import groovy.util.XmlParser
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               println "Initially Config.xml file is: "
-              file.eachLine { line ->
-                  println line
+              //file.eachLine { line ->
+              //    println line
+              //}
+                file.withReader { reader ->
+                  while ((line = reader.readLine()) != null) {
+                        println "${line}"
+                  }
               }
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               def rootNode = new XmlParser().parse(file)
