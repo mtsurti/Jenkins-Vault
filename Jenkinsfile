@@ -153,9 +153,14 @@ import groovy.util.XmlParser
                   }
               }   
               println "Finally Config.xml file is: "
-              file.eachLine { line ->
-                  println line
-              }                 
+              //file.eachLine { line ->
+              //    println line
+              //}
+              file.withReader { reader ->
+                  while ((line = reader.readLine()) != null) {
+                        println "${line}"
+                  }
+              }
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
