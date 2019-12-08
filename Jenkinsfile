@@ -133,6 +133,10 @@ import groovy.util.XmlParser
           if (prefix.toLowerCase().contains("token")) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
+              println "Initially Config.xml file is: "
+              file.eachLine { line ->
+                  println line
+              }
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               def rootNode = new XmlParser().parse(file)
               def iterator = rootNode.iterator()
@@ -148,7 +152,7 @@ import groovy.util.XmlParser
                       println "Updated new token in " + modifiedNode.name() + " with " + modifiedNode.text()
                   }
               }   
-              println "Config.xml file is: "
+              println "Finally Config.xml file is: "
               file.eachLine { line ->
                   println line
               }                 
