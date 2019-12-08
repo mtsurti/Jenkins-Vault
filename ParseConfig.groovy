@@ -13,7 +13,7 @@ def updateAllConfigs(String token) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               file.eachLine { line ->
-                    println "Just printing " + line.toLowerCase()
+                    println "Just printing ->" + line
                     if (line.toLowerCase().contains("authToken")) {
                         println line
                     }
