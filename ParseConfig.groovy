@@ -1,3 +1,4 @@
+#! /usr/local/bin/groovy
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //to get a single job
@@ -87,3 +88,4 @@ def updateAllConfigs(String token) {
               job.doReload()
             }
       */
+return this
