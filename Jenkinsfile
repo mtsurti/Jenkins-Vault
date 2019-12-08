@@ -42,7 +42,7 @@ import groovy.util.XmlParser
           stage('Update config.xml'){
             //echo 'Updating config.xml file with new token...'
             parser = load pwd() + '/ParseConfig.groovy'  
-            parser.updateAllConfigs()
+            parser.updateAllConfigs(newToken)
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
