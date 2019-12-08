@@ -1,4 +1,4 @@
-def updateAllConfigs() {
+def updateAllConfigs(def token) {
       def hudson = hudson.model.Hudson.instance;
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
@@ -23,7 +23,7 @@ def updateAllConfigs() {
                 println "The node is " + currentNode.name() + " -> " + currentNode.text()
                 if (currentNode.name().toLowerCase().contains("authToken")) {
                       Node newNode = currentNode
-                      newNode.setValue(newToken)
+                      newNode.setValue(token)
                       def modifiedNode = currentNode.authToken.replaceNode(newNode)
                       println "Updated new token in " + modifiedNode.name() + " with " + modifiedNode.text()
                   }
@@ -36,7 +36,7 @@ def updateAllConfigs() {
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
                         println "this is vbs"
-                        n."EnvInjectBuildWrapper".info.propertiesContent.value = n."EnvInjectBuildWrapper".info.propertiesContent.text().replace(oldToken, newToken)
+                        n."EnvInjectBuildWrapper".info.propertiesContent.value = n."EnvInjectBuildWrapper".info.propertiesContent.text().replace(oldToken, token)
                         println "[INFO] save changes in config.xml"
                         }
                   }    
@@ -63,12 +63,12 @@ def updateAllConfigs() {
                         //    on which we can call "setValue(...)"
                         //def aNode = it
                         def anotherNode = it / 'authToken'
-                        anotherNode.setValue(newToken)
+                        anotherNode.setValue(token)
 
                         // You can chain these steps,
                         //    but must add wrapping parenthesis
                         //    because the "/" has a very low precedence (lower than the ".")
-                        (it / 'authToken').setValue(newToken)        
+                        (it / 'authToken').setValue(token)        
                   }
               //}*/
           }
