@@ -15,7 +15,7 @@ import groovy.util.XmlParser
                   def newToken
                   def tokenGenerator
                   def items
-                  def parser
+                  def configParser
             }
         try {
           stage('Checkout') {
@@ -41,8 +41,9 @@ import groovy.util.XmlParser
           }
           stage('Update config.xml'){
             //echo 'Updating config.xml file with new token...'
-            parser = load pwd() + '/ParseConfig.groovy'  
-            parser.updateAllConfigs(newToken)
+           println "Location of config parser is " + pwd() + 'ParseConfig.groovy' 
+           configParser = load pwd() + '/ParseConfig.groovy'  
+            configParser.updateAllConfigs(newToken)
           }
           stage('Reload config'){
             //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
