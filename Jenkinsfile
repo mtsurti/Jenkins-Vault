@@ -144,8 +144,7 @@ import groovy.util.XmlParser
               def currentNode
               while (iterator.hasNext()) {   
                 currentNode = iterator.next()
-                println "Iterating over contents of the config file..."
-                println currentNode.name() + " " + currentNode.text()
+                println "The node is " + currentNode.name() + " -> " + currentNode.text()
                 if (currentNode.name().toLowerCase().contains("authToken")) {
                       Node newNode = currentNode
                       newNode.setValue(newToken)
