@@ -1,4 +1,6 @@
 #! /usr/local/bin/groovy
+
+@NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //to get a single job
@@ -11,7 +13,6 @@ def updateAllConfigs(String token) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               println "Initially Config.xml file is: "
-              @NonCPS
               file.eachLine { line ->
                   println line
               }
@@ -31,7 +32,6 @@ def updateAllConfigs(String token) {
                   }
               }   
               println "Finally Config.xml file is: "
-              @NonCPS
               file.eachLine { line ->
                   println line
               }
