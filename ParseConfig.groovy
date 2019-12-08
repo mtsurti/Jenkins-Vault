@@ -1,4 +1,4 @@
-def updateAllConfigs(def token) {
+def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
