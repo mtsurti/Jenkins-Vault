@@ -14,8 +14,8 @@ def updateAllConfigs(String token) {
               file.eachLine { line ->
                   println line
               }
-              //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
-              def rootNode = new XmlParser().parse(file)
+              def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
+              //def rootNode = new XmlParser().parse(file)
               def iterator = rootNode.iterator()
               
               def currentNode
