@@ -31,10 +31,7 @@ def updateAllConfigs(String token) {
                       println "Updated new token in " + modifiedNode.name() + " with " + modifiedNode.text()
                   }
               }   
-              println "Finally Config.xml file is: "
-              file.eachLine { line ->
-                  println line
-              }
+              
               /*def nodeToModify = rootNode.buildWrappers.findAll { n -> 
               if (n."EnvInjectBuildWrapper".info.propertiesContent) {
                   if (n."EnvInjectBuildWrapper".info.propertiesContent.text().toLowerCase().contains(contain_text.toLowerCase())) {
@@ -46,7 +43,7 @@ def updateAllConfigs(String token) {
               } */     
               
               
-              /*file.withWriter { w ->
+              file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
                   //w.write(XmlUtil.serialize(currentNode))
               }
@@ -54,8 +51,12 @@ def updateAllConfigs(String token) {
               InputStream is = new FileInputStream(file)
               thisJob.updateByXml(new StreamSource(is))
               thisJob.save()
-              thisJob.doReload() */
+              thisJob.doReload() 
               
+              println "Finally Config.xml file is: "
+              file.eachLine { line ->
+                  println line
+              }
               //job(thisJob.name) {
                   /*println "Job is " + thisJob.name
                   configure {
