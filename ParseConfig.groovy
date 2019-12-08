@@ -14,7 +14,7 @@ def updateAllConfigs(String token) {
               def file = configXMLFile.getFile()
               file.eachLine { line ->
                     //println "Just printing ->" + line
-                    if (line.contains("authToken")) {
+                    if (line.trim().contains("authToken")) {
                         println line
                     }
               }
