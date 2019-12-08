@@ -167,7 +167,7 @@ import groovy.util.XmlParser
               } */     
               
               
-              file.withWriter { w ->
+              /*file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
                   //w.write(XmlUtil.serialize(currentNode))
               }
@@ -175,7 +175,7 @@ import groovy.util.XmlParser
               InputStream is = new FileInputStream(file)
               thisJob.updateByXml(new StreamSource(is))
               thisJob.save()
-              thisJob.doReload() 
+              thisJob.doReload() */
               
               //job(thisJob.name) {
                   /*println "Job is " + thisJob.name
