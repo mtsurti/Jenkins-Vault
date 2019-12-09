@@ -43,4 +43,5 @@ def rotateToken() {
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
     }
+  }
 return this
