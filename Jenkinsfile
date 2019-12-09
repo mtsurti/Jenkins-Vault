@@ -40,7 +40,7 @@ import groovy.util.XmlParser
               println newToken
           }
           stage('Update config.xml...'){
-            //echo 'Updating config.xml file with new token...'
+            echo 'Updating config.xml file with new token...'
            configParser = load pwd() + '/ParseConfig.groovy'  
            configParser.updateAllConfigs(newToken)
            //configParser.updateByConfigureNode(newToken)     
