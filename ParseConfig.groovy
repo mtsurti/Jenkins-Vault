@@ -19,11 +19,13 @@ def updateAllConfigs(String token) {
                     if (line.trim().contains("authToken")) {
                        anotherFile.withWriter('utf-8') { writer ->
                              writer.writeLine "  <authToken>" + token + "</authToken>"  
+                             println "  <authToken>" + token + "</authToken>"
                         }
                     }      
                     if (!line.trim().contains("authToken")) {
                         anotherFile.withWriter('utf-8') { writer ->
                              writer.writeLine line
+                             println line
                         }
                     }
               }
