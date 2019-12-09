@@ -4,7 +4,8 @@ import javax.xml.transform.stream.StreamSource
 @NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
-      FileOutputStream output = new FileOutputStream("tempconfig.xml")
+      //FileOutputStream output = new FileOutputStream("tempconfig.xml")
+      PrintWriter output = new PrintWriter("tempconfig.xml", 'utf-8')
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
@@ -17,18 +18,21 @@ def updateAllConfigs(String token) {
               
               file.eachLine { line ->
                     if (line.trim().contains("authToken")) {
-                       output.withWriter('utf-8') { writer ->
-                             writer.write "  <authToken>" + token + "</authToken>"  
+                       //output.withWriter('utf-8') { writer ->
+                       output.println "  <authToken>" + token + "</authToken>"  
+                             //writer.write "  <authToken>" + token + "</authToken>"  
                              println "  <authToken>" + token + "</authToken>"
                         }
                     }      
                     if (!line.trim().contains("authToken")) {
-                        output.withWriter('utf-8') { writer ->
-                             writer.write line
+                        //output.withWriter('utf-8') { writer ->
+                        output.println line
+                             //writer.write line
                              println line
                         }
                     }
               }
+              output.close()
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parse(file)
               /*def iterator = rootNode.iterator()
@@ -62,9 +66,9 @@ def updateAllConfigs(String token) {
               }*/
               //println "config file is " + file
               
-              thisJob.updateByXml(new StreamSource(is))
-              thisJob.save()
-              thisJob.doReload() 
+              //thisJob.updateByXml(new StreamSource(is))
+              //thisJob.save()
+              //thisJob.doReload() 
               
               /*println "Finally Config.xml file is: "
               file.eachLine { line ->
