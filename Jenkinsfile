@@ -32,7 +32,7 @@ import groovy.util.XmlParser
           }
           stage('Load') {
             echo 'Loading from external token file...'  
-            tokenGenerator = load pwd() + '/newtoken.groovy'  
+            tokenGenerator = load pwd() + '/RefreshToken.groovy'  
           }
           stage('Generate') {
               echo 'Generating new token...'
