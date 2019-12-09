@@ -69,6 +69,7 @@ def updateAllConfigs(String token) {
               }*/
               //println "config file is " + file
               
+              println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/token-rotator"
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/token-rotator"
               //sh "rm /Users/mohammad/.jenkins/jobs/token-rotator/config.xml"
               //sh "mv /Users/mohammad/.jenkins/jobs/token-rotator/tempconfig.xml /Users/mohammad/.jenkins/jobs/token-rotator/config.xml"
