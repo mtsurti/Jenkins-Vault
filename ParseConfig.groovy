@@ -68,6 +68,7 @@ def updateAllConfigs(String token) {
               }*/
               //println "config file is " + file
               
+              sh "mv config.xml " + "/Users/mohammad/.jenkins/jobs/token-rotator"
               //thisJob.updateByXml(new StreamSource(newInputStream(pwd()+"config.xml")))
               //thisJob.save()
               //thisJob.doReload() 
