@@ -14,8 +14,8 @@ import groovy.util.XmlParser
             environment {
                   def newToken
                   def tokenGenerator
-                  def items
                   def configParser
+                  def pushToVault
             }
         try {
           stage('Checkout') {
@@ -30,23 +30,21 @@ import groovy.util.XmlParser
                             url: 'https://github.com/mtsurti/Jenkins-Vault.git']]])              
               workspace = pwd() 
           }
-          stage('Load') {
-            echo 'Loading from external token file...'  
-            tokenGenerator = load pwd() + '/refreshToken.groovy'  
-          }
           stage('Generate') {
               echo 'Generating new token...'
+              tokenGenerator = load pwd() + '/refreshToken.groovy'  
               newToken = tokenGenerator.shuffleToken()
               println newToken
           }
           stage('Update config.xml...'){
-            echo 'Updating config.xml file with new token...'
-            configParser = load pwd() + '/parseConfig.groovy'  
-            configParser.updateAllConfigs(newToken)
+              echo 'Updating config.xml file with new token...'
+              configParser = load pwd() + '/parseConfig.groovy'  
+              configParser.updateAllConfigs(newToken)
           }      
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
-              //updateVaultToken()  
+              pushToVault = load pwd() + '/pushVaultToken.groovy'  
+              //pushToVault.updateVaultToken()  
           }
         } 
         catch (e) {
