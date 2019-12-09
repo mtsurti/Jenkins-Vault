@@ -1,4 +1,8 @@
 #!/usr/local/bin/groovy
+import com.cloudbees.plugins.credentials.*
+import com.cloudbees.plugins.credentials.domains.*
+import com.datapipe.jenkins.vault.credentials.*
+import hudson.util.Secret
 
 def rotateToken() {
         // define the secrets and the env variables
@@ -32,8 +36,8 @@ def rotateToken() {
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }
-  def updateVaultToken(String token) {
-    withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
+  def updateVaultToken(String roleId, String token) {
+    /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
           //export VAULT_ADDR=https://$(hostname):8200
@@ -42,6 +46,22 @@ def rotateToken() {
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-rotation/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
-    }
+    }*/
+          
+        //def updateVaultAppRoleCredential = { roleId, token ->
+        def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+        def credentials = credentialsStore.getCredentials(Domain.global())
+        credentials.each {
+           if (it.getRoleId()==roleId){
+               if ( credentialsStore.updateCredentials(
+                 com.cloudbees.plugins.credentials.domains.Domain.global(),
+                 it, new VaultAppRoleCredential(it.scope, it.id, it.description, it.roleId, new Secret(token) ) ) ) {
+               println "${roleId} updated" 
+               } 
+               else {
+                println "ERROR: unable to update ${roleId}"
+               }
+          }
+      }   
   }
 return this
