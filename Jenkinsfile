@@ -32,7 +32,7 @@ import groovy.util.XmlParser
           }
           stage('Load') {
             echo 'Loading from external token file...'  
-            tokenGenerator = load pwd() + '/RefreshToken.groovy'  
+            tokenGenerator = load pwd() + '/refreshToken.groovy'  
           }
           stage('Generate') {
               echo 'Generating new token...'
@@ -41,7 +41,7 @@ import groovy.util.XmlParser
           }
           stage('Update config.xml...'){
             echo 'Updating config.xml file with new token...'
-            configParser = load pwd() + '/ParseConfig.groovy'  
+            configParser = load pwd() + '/parseConfig.groovy'  
             configParser.updateAllConfigs(newToken)
           }      
           stage('Deploy to Vault server...') {
