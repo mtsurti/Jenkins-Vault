@@ -22,8 +22,7 @@ def updateAllConfigs(String token) {
               }
               output.close()
               
-              println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.name()
-              sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.name()
+              sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/token-rotator"
               
               //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
               thisJob.save()
