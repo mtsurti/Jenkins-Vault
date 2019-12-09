@@ -120,7 +120,8 @@ def updateByConfigureNode(String token) {
           //def prefix = names.substring(0, names.indexOf('-'))
           prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("token")) {
-              configure {
+                job {
+                configure {
                         // "it" is a groovy.util.Node
                         //    representing the job's config.xml's root "project" element.
                         // anotherNode is also groovy.util.Node
@@ -135,6 +136,7 @@ def updateByConfigureNode(String token) {
                         //    because the "/" has a very low precedence (lower than the ".")
                         (it / 'authToken').setValue(token)        
                   }
+                }
            }
               //output.close()
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
