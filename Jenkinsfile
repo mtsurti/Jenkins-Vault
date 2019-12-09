@@ -52,7 +52,5 @@ import groovy.util.XmlParser
         catch (e) {
             throw e
         }
-      }
-    }
-  }     
+      }    
   
