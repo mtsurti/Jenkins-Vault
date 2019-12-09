@@ -4,6 +4,7 @@ import javax.xml.transform.stream.StreamSource
 @NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
+      FileOutputStream output
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
@@ -16,13 +17,13 @@ def updateAllConfigs(String token) {
               
               file.eachLine { line ->
                     if (line.trim().contains("authToken")) {
-                       file.withWriter('utf-8') { writer ->
+                       output.withWriter('utf-8') { writer ->
                              writer.writeLine "  <authToken>" + token + "</authToken>"  
                              println "  <authToken>" + token + "</authToken>"
                         }
                     }      
                     if (!line.trim().contains("authToken")) {
-                        file.withWriter('utf-8') { writer ->
+                        output.withWriter('utf-8') { writer ->
                              writer.writeLine line
                              println line
                         }
@@ -60,7 +61,7 @@ def updateAllConfigs(String token) {
                   //w.write(XmlUtil.serialize(currentNode))
               }*/
               //println "config file is " + file
-              InputStream is = new FileInputStream(file)
+              
               thisJob.updateByXml(new StreamSource(is))
               thisJob.save()
               thisJob.doReload() 
