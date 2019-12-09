@@ -23,7 +23,6 @@ def updateAllConfigs(String token) {
               output.close()
               
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.name
-              println thisJob.url
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.name()
               
               //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
