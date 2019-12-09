@@ -74,9 +74,9 @@ def updateAllConfigs(String token) {
               //sh "rm /Users/mohammad/.jenkins/jobs/token-rotator/config.xml"
               //sh "mv /Users/mohammad/.jenkins/jobs/token-rotator/tempconfig.xml /Users/mohammad/.jenkins/jobs/token-rotator/config.xml"
               
-              thisJob.updateByXml(new StreamSource(newInputStream("/Users/mohammad/.jenkins/jobs/token-rotator/config.xml")))
-              thisJob.save()
-              thisJob.doReload() 
+              //thisJob.updateByXml(new StreamSource(newInputStream("/Users/mohammad/.jenkins/jobs/token-rotator/config.xml")))
+              //thisJob.save()
+              //thisJob.doReload() 
                        
       /*
             import jenkins.model.Jenkins;
