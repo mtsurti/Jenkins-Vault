@@ -108,6 +108,7 @@ def updateAllConfigs(String token) {
               job.doReload()
             }
       */
+@NonCPS
 def updateByConfigureNode(String token) {
       def hudson = hudson.model.Hudson.instance;
       //FileOutputStream output = new FileOutputStream("tempconfig.xml")
