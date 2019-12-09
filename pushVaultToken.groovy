@@ -48,7 +48,6 @@ def rotateToken() {
         '''   
     }*/
           
-        //def updateVaultAppRoleCredential = { roleId, token ->
         def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
         credentials.each {
@@ -61,7 +60,7 @@ def rotateToken() {
                else {
                 println "ERROR: unable to update ${roleId}"
                }
-          }
-      }   
-  }
+            }
+        }   
+    }
 return this
