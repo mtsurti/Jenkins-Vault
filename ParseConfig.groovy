@@ -1,7 +1,7 @@
 #! /usr/local/bin/groovy
 import javax.xml.transform.stream.StreamSource
 
-@NonCPS
+//@NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //FileOutputStream output = new FileOutputStream("tempconfig.xml")
