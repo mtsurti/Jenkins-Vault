@@ -1,6 +1,6 @@
 #! /usr/local/bin/groovy
 
-//@NonCPS
+@NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
