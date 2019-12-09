@@ -68,9 +68,9 @@ def updateAllConfigs(String token) {
               }*/
               //println "config file is " + file
               
-              thisJob.updateByXml(new StreamSource(newInputStream(pwd()+"config.xml")))
-              thisJob.save()
-              thisJob.doReload() 
+              //thisJob.updateByXml(new StreamSource(newInputStream(pwd()+"config.xml")))
+              //thisJob.save()
+              //thisJob.doReload() 
                        
       /*
             import jenkins.model.Jenkins;
