@@ -57,8 +57,7 @@ def updateAllConfigs(String token) {
                         println "[INFO] save changes in config.xml"
                         }
                   }    
-              } */     
-              
+              } */                   
               
               /*file.withWriter { w ->
                   w.write(XmlUtil.serialize(rootNode))
@@ -70,40 +69,14 @@ def updateAllConfigs(String token) {
               //thisJob.save()
               //thisJob.doReload() 
               
-              /*println "Finally Config.xml file is: "
-              file.eachLine { line ->
-                  println line
-              }*/
-              //job(thisJob.name) {
-                  /*println "Job is " + thisJob.name
-                  configure {
-                        // "it" is a groovy.util.Node
-                        //    representing the job's config.xml's root "project" element.
-                        // anotherNode is also groovy.util.Node
-                        //    obtained with the overloaded "/" operator
-                        //    on which we can call "setValue(...)"
-                        //def aNode = it
-                        def anotherNode = it / 'authToken'
-                        anotherNode.setValue(token)
-
-                        // You can chain these steps,
-                        //    but must add wrapping parenthesis
-                        //    because the "/" has a very low precedence (lower than the ".")
-                        (it / 'authToken').setValue(token)        
-                  }
-              //}*/
           }
         }
       }         
       /*
             import jenkins.model.Jenkins;
-
             def job_path = 'folder1/folder2/job_name'
-
             Jenkins j = Jenkins.get()
-
             def job = j.getItemByFullName(job_path)
-
             if (job) {
               job.doReload()
             }
