@@ -4,7 +4,7 @@ import javax.xml.transform.stream.StreamSource
 @NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
-      FileOutputStream output
+      FileOutputStream output = new FileOutputStream("tempconfig.xml")
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
