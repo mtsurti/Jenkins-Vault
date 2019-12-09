@@ -22,14 +22,14 @@ def updateAllConfigs(String token) {
                        output.println "  <authToken>" + token + "</authToken>"  
                              //writer.write "  <authToken>" + token + "</authToken>"  
                              println "  <authToken>" + token + "</authToken>"
-                        }
+                        //}
                     }      
                     if (!line.trim().contains("authToken")) {
                         //output.withWriter('utf-8') { writer ->
                         output.println line
                              //writer.write line
                              println line
-                        }
+                        //}
                     }
               }
               output.close()
@@ -169,4 +169,4 @@ def updateByConfigureNode(String token) {
 
       }         
 }
-//return this
+return this
