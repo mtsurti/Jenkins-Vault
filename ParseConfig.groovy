@@ -5,7 +5,7 @@ import javax.xml.transform.stream.StreamSource
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //FileOutputStream output = new FileOutputStream("tempconfig.xml")
-      PrintWriter output = new PrintWriter("tempconfig.xml", 'utf-8')
+      PrintWriter output = new PrintWriter("config.xml", 'utf-8')
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
@@ -68,9 +68,9 @@ def updateAllConfigs(String token) {
               }*/
               //println "config file is " + file
               
-              //thisJob.updateByXml(new StreamSource(is))
-              //thisJob.save()
-              //thisJob.doReload() 
+              thisJob.updateByXml(new StreamSource(newInputStream(pwd()+"config.xml")))
+              thisJob.save()
+              thisJob.doReload() 
                        
       /*
             import jenkins.model.Jenkins;
