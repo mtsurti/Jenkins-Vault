@@ -5,7 +5,8 @@ import javax.xml.transform.stream.StreamSource
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       //FileOutputStream output = new FileOutputStream("tempconfig.xml")
-      PrintWriter output = new PrintWriter("tempconfig.xml", 'utf-8')
+      println "Workspace is " + pwd()
+      PrintWriter output = new PrintWriter(pwd()+"tempconfig.xml", 'utf-8')
       //to get a single job
       //def job = hudson.model.Hudson.instance.getItem('my-job');
       def prefix
