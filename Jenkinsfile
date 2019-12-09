@@ -41,21 +41,9 @@ import groovy.util.XmlParser
           }
           stage('Update config.xml...'){
             echo 'Updating config.xml file with new token...'
-           configParser = load pwd() + '/ParseConfig.groovy'  
-           configParser.updateAllConfigs(newToken)
-           //configParser.updateByConfigureNode(newToken)     
-          }
-          stage('Reload config...'){
-            //sh 'cp reloadConfig.groovy ../reloadConfig.groovy'   
-            /*items = load pwd() + '/reloadConfig.groovy'  
-            println items
-            items.reloadItems()*/
-            //sh 'rm ../reloadConfig.groovy'
+            configParser = load pwd() + '/ParseConfig.groovy'  
+            configParser.updateAllConfigs(newToken)
           }      
-          stage('Restart Jenkins...'){
-            echo 'Restarting Jenkins...'
-            //restartJenkins()
-          }
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               //updateVaultToken()  
@@ -65,11 +53,6 @@ import groovy.util.XmlParser
             throw e
         }
       }
-    def restartJenkins() {
-        //sh 'sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist'
-        //sh 'sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist'
-      sh 'wget http://localhost:8080/restart'
-    }
 
     def rotateToken() {
         // define the secrets and the env variables
