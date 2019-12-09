@@ -33,6 +33,9 @@ def updateAllConfigs(String token) {
                     }
               }
               output.close()
+           }
+        }
+      }
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parse(file)
               /*def iterator = rootNode.iterator()
@@ -68,10 +71,7 @@ def updateAllConfigs(String token) {
               //thisJob.updateByXml(new StreamSource(is))
               //thisJob.save()
               //thisJob.doReload() 
-              
-          }
-        }
-      }         
+                       
       /*
             import jenkins.model.Jenkins;
             def job_path = 'folder1/folder2/job_name'
