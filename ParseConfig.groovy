@@ -35,7 +35,7 @@ def updateAllConfigs(String token) {
               output.close()
            }
         //}
-      }
+     // }
               //def rootNode = new XmlParser().parseText(file.getText('UTF-8'))
               //def rootNode = new XmlParser().parse(file)
               /*def iterator = rootNode.iterator()
