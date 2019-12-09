@@ -169,4 +169,4 @@ def updateByConfigureNode(String token) {
 
       }         
 }
-return this
+//return this
