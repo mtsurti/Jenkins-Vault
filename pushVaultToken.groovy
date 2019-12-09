@@ -32,7 +32,7 @@ def rotateToken() {
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }
-  def updateVaultToken() {
+  def updateVaultToken(String token) {
     withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
