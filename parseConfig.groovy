@@ -11,9 +11,8 @@ def updateAllConfigs(String token) {
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
 
       allJobs.each { thisJob ->
-          println thisJob.fullName
+          println thisJob.fullName + " getting token refreshed..."
           prefix = thisJob.fullName.takeWhile { it != '-' }
-          println prefix
           if (prefix.toLowerCase().contains("iaas")) {
               output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
               
