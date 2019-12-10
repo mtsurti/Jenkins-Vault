@@ -12,7 +12,7 @@ def updateAllConfigs(String token) {
       }*/
       //for (thisJob in hudson.model.Hudson.instance.items) {   
       //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
-      allJobs.each { thisjob ->
+      allJobs.each { thisJob ->
           prefix = thisJob.fullName.takeWhile { it != '-' }
           println prefix
           if (prefix.toLowerCase().contains("iaas")) {
