@@ -16,6 +16,7 @@ import groovy.util.XmlParser
                   def tokenGenerator
                   def configParser
                   def pushToVault
+                  def vaultHostName = "localhost"
             }
         try {
           stage('Checkout') {
@@ -44,7 +45,7 @@ import groovy.util.XmlParser
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
-              //pushToVault.updateVaultToken(vaultRole, newToken)  
+              //pushToVault.updateVaultToken(vaultRole, newToken, vaultHostName)  
           }
         } 
         catch (e) {
