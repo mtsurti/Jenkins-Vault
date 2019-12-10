@@ -6,16 +6,13 @@ def updateAllConfigs(String token) {
       PrintWriter output 
       String jobname
       def prefix
+      String allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
       /*for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){ //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName)
             println aJob.fullName
       }*/
-      Jenkins.instance.getAllItems(Job.class).findAll.each { job->
-        jobname = item.getUrl()
-        jobname = jobname.replaceAll('job/', '')
-        println jobname
-      }
       //for (thisJob in hudson.model.Hudson.instance.items) {   
-      for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
+      //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
+      allJobs.each { thisjob ->
           prefix = thisJob.fullName.takeWhile { it != '-' }
           println prefix
           if (prefix.toLowerCase().contains("iaas")) {
