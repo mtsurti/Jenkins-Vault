@@ -31,9 +31,10 @@ def updateAllConfigs(String token) {
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
               //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
+              println "About to reload " + thisJob.fullName
               thisJob.save()
               thisJob.doReload()       
-              println "Done reloading " + thisJob.fullName
+              
            }
         }
       }                
