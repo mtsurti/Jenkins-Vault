@@ -7,7 +7,7 @@ def updateAllConfigs(String token) {
       def prefix
       for (thisJob in hudson.model.Hudson.instance.items) {   
           prefix = thisJob.name.takeWhile { it != '-' }
-          if (prefix.toLowerCase().contains("token")) {
+          if (prefix.toLowerCase().contains("iaas")) {
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               
