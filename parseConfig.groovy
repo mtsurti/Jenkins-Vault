@@ -10,8 +10,6 @@ def updateAllConfigs(String token) {
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
 
-      //for (thisJob in hudson.model.Hudson.instance.items) {   
-      //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
       allJobs.each { thisJob ->
           println thisJob.fullName
           prefix = thisJob.fullName.takeWhile { it != '-' }
@@ -30,15 +28,10 @@ def updateAllConfigs(String token) {
                         output.println line
                     }
               }
-              println "About to reload " + thisJob.fullName
               output.close()
               thisJob.updateByXml(new StreamSource(new FileInputStream(new File(pwd()+'/config.xml'))))
               thisJob.save()
               thisJob.doReload()  
-              //println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
-              //sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
-              //thisJob.updateByXml(new FileInputStream(new File(pwd()+'/config.xml')))
-                   
            }
         }
       }                
