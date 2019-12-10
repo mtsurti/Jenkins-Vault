@@ -3,7 +3,7 @@
 @NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
-      PrintWriter output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
+      PrintWriter output 
       def prefix
       for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){ //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName)
             println aJob.fullName
@@ -12,6 +12,7 @@ def updateAllConfigs(String token) {
       for (thisJob in hudson.model.Hudson.instance.items) {   
           prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("iaas")) {
+              output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               
