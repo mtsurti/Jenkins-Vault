@@ -5,7 +5,7 @@ def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
       def prefix
-      for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob) //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName) {
+      for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){ //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName)
             println aJob.fullName
       }
       
