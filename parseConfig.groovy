@@ -8,9 +8,7 @@ def updateAllConfigs(String token) {
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
       //for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){ //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName)
-      allJobs.each { aJob ->
-         println aJob.fullName
-      }
+      
       //}
       //for (thisJob in hudson.model.Hudson.instance.items) {   
       //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
@@ -35,9 +33,13 @@ def updateAllConfigs(String token) {
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
               //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
-              thisJob.save()
-              thisJob.doReload()        
+              //thisJob.save()
+              //thisJob.doReload()        
            }
         }
+        allJobs.each { aJob ->
+         println aJob.fullName
+         aJob.save()
+         aJob.doReload()   
       }                
 return this
