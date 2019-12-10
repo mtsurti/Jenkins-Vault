@@ -7,9 +7,7 @@ def updateAllConfigs(String token) {
       String jobname
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
-      //for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){ //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName)
-      
-      //}
+
       //for (thisJob in hudson.model.Hudson.instance.items) {   
       //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
       allJobs.each { thisJob ->
