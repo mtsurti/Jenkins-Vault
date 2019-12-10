@@ -58,7 +58,7 @@ def rotateToken() {
                println roleId + " updated" 
                } 
                else {
-                println "ERROR: unable to update " + roleId
+                println "ERROR: unable to update " + roleId 
                }
             }
         }   
