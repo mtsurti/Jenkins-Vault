@@ -32,7 +32,7 @@ def updateAllConfigs(String token) {
               }
               println "About to reload " + thisJob.fullName
               output.close()
-              thisJob.updateByXml(new FileInputStream(new File(pwd()+'/config.xml')))
+              thisJob.updateByXml(new StreamSource(new FileInputStream(new File(pwd()+'/config.xml'))))
               thisJob.save()
               thisJob.doReload()  
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
