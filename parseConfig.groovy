@@ -40,6 +40,7 @@ def updateAllConfigs(String token) {
         allJobs.each { aJob ->
          println aJob.fullName
          aJob.save()
-         aJob.doReload()   
+         aJob.doReload()
+        }
       }                
 return this
