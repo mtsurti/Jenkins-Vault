@@ -5,19 +5,22 @@ import javax.xml.transform.stream.*
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output 
-      InputStream stream 
+      def configXMLFile 
+      def file
       String jobname
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
 
+      // iterating through all the jobs
       allJobs.each { thisJob ->
-          println thisJob.fullName + " getting token refreshed..."
           prefix = thisJob.fullName.takeWhile { it != '-' }
+          // fultering by iaas pipelines
+          println thisJob.fullName + " getting token refreshed..."
           if (prefix.toLowerCase().contains("iaas")) {
               output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
               
-              def configXMLFile = thisJob.getConfigFile()
-              def file = configXMLFile.getFile()
+              configXMLFile = thisJob.getConfigFile()
+              file = configXMLFile.getFile()
               
               file.eachLine { line ->
                     if (line.trim().contains("authToken")) {
