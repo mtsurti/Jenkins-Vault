@@ -1,5 +1,6 @@
 #! /usr/local/bin/groovy
-
+import javax.xml.transform.stream.*
+      
 @NonCPS
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
