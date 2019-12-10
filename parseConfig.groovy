@@ -29,12 +29,13 @@ def updateAllConfigs(String token) {
                         output.println line
                     }
               }
+              println "About to reload " + thisJob.fullName
               stream = new ByteArrayInputStream(output.getBytes('utf-8'));
               output.close()
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
               thisJob.updateByXml(new StreamSource(stream))
-              println "About to reload " + thisJob.fullName
+
               thisJob.save()
               thisJob.doReload()       
            }
