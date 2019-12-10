@@ -7,7 +7,6 @@ def updateAllConfigs(String token) {
       PrintWriter output 
       def configXMLFile 
       def file
-      String jobname
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
 
