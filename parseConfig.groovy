@@ -31,14 +31,15 @@ def updateAllConfigs(String token) {
                     }
               }
               println "About to reload " + thisJob.fullName
-              stream = new ByteArrayInputStream(output.getBytes('utf-8'));
+              //stream = new ByteArrayInputStream(output.getBytes('utf-8'));
               output.close()
+              thisJob.updateByXml(new FileInputStream(new File(pwd()+'/config.xml')))
+              thisJob.save()
+              thisJob.doReload()  
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
-              thisJob.updateByXml(new StreamSource(stream))
-
-              thisJob.save()
-              thisJob.doReload()       
+              thisJob.updateByXml(new FileInputStream(new File(pwd()+'/config.xml')))
+                   
            }
         }
       }                
