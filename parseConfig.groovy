@@ -13,6 +13,7 @@ def updateAllConfigs(String token) {
       //for (thisJob in hudson.model.Hudson.instance.items) {   
       //for (thisJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)){
       allJobs.each { thisJob ->
+          println thisJob.fullName
           prefix = thisJob.fullName.takeWhile { it != '-' }
           println prefix
           if (prefix.toLowerCase().contains("iaas")) {
@@ -28,14 +29,13 @@ def updateAllConfigs(String token) {
                         output.println line
                     }
               }
-              
+              output.close()
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
               //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
               thisJob.save()
               thisJob.doReload()        
            }
-        output.close()
         }
       }                
 return this
