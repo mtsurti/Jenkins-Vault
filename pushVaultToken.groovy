@@ -36,7 +36,7 @@ def rotateToken() {
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }
-  def updateVaultToken(String roleId, String token) {
+  def updateVaultToken(String roleId, String token, String hostname) {
     /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
@@ -47,18 +47,18 @@ def rotateToken() {
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
     }*/
-          
+        sh "export VAULT_ADDR=https://" + hostname + ":8200"
         def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
         credentials.each {
-           if (it.getRoleId()==roleId){
+           if (it.getRoleId() == roleId){
                if ( credentialsStore.updateCredentials(
                  com.cloudbees.plugins.credentials.domains.Domain.global(),
                  it, new VaultAppRoleCredential(it.scope, it.id, it.description, it.roleId, new Secret(token) ) ) ) {
-               println "${roleId} updated" 
+               println roleId + " updated" 
                } 
                else {
-                println "ERROR: unable to update ${roleId}"
+                println "ERROR: unable to update " + roleId
                }
             }
         }   
