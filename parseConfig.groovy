@@ -5,6 +5,10 @@ def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
       def prefix
+      for (aJob in Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob) //org.jenkinsci.plugins.workflow.job.WorkflowJob)*.fullName) {
+            println aJob.fullName
+      }
+      
       for (thisJob in hudson.model.Hudson.instance.items) {   
           prefix = thisJob.name.takeWhile { it != '-' }
           if (prefix.toLowerCase().contains("iaas")) {
