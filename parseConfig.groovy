@@ -4,6 +4,7 @@
 def updateAllConfigs(String token) {
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output 
+      InputStream stream 
       String jobname
       def prefix
       def allJobs = Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
@@ -16,6 +17,7 @@ def updateAllConfigs(String token) {
           println prefix
           if (prefix.toLowerCase().contains("iaas")) {
               output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
+              
               def configXMLFile = thisJob.getConfigFile()
               def file = configXMLFile.getFile()
               
@@ -27,10 +29,11 @@ def updateAllConfigs(String token) {
                         output.println line
                     }
               }
-              //output.close()
+              stream = new ByteArrayInputStream(output.getBytes('utf-8'));
+              output.close()
               println "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName            
               sh "mv " + pwd() + "/config.xml " + " /Users/mohammad/.jenkins/jobs/" + thisJob.fullName          
-              //thisJob.updateByXml(new InputStream(pwd()+"/config.xml"))
+              thisJob.updateByXml(new StreamSource(stream)))
               println "About to reload " + thisJob.fullName
               thisJob.save()
               thisJob.doReload()       
