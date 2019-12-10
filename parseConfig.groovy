@@ -16,7 +16,7 @@ def updateAllConfigs(String token) {
           prefix = thisJob.fullName.takeWhile { it != '-' }
           // filtering by iaas pipelines        
           if (prefix.toLowerCase().contains("iaas")) {
-              println thisJob.fullName + " getting token refreshed..."
+              println thisJob.fullName + " pipeline getting auth token refreshed..."
               output = new PrintWriter(pwd()+'/config.xml', 'utf-8')
               
               configXMLFile = thisJob.getConfigFile()
