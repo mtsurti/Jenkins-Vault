@@ -3,6 +3,7 @@ import javax.xml.transform.stream.*
       
 @NonCPS
 def updateAllConfigs(String token) {
+   if (token != null && token.length() > 0 ){  
       def hudson = hudson.model.Hudson.instance;
       PrintWriter output 
       def configXMLFile 
@@ -35,5 +36,6 @@ def updateAllConfigs(String token) {
               thisJob.doReload()  
            }
         }
-      }                
+      }   
+    }  
 return this
