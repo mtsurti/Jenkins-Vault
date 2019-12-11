@@ -37,7 +37,8 @@ import hudson.util.Secret
     // }
     }*/
   def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
-    /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
+    if (hostname != null && hostname.length() > 0) {
+   /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
           //export VAULT_ADDR=https://$(hostname):8200
@@ -64,4 +65,5 @@ import hudson.util.Secret
         } */
         sh "vault login " + loginToken  
     }
+  }
 return this
