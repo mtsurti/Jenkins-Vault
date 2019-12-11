@@ -16,9 +16,9 @@ import groovy.util.XmlParser
                   def tokenGenerator
                   def configParser
                   def pushToVault
-                  def vaultHostName = "localhost"
-                  def vaultRole = ""
-                  def loginToken = "s.6KkwFnj4dP7go5Nz9bDSTrZb"
+                  String vaultHostName = "localhost"
+                  String vaultRole = ""
+                  String loginToken = "s.6KkwFnj4dP7go5Nz9bDSTrZb"
             }
         try {
           stage('Checkout') {
