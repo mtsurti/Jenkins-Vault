@@ -12,11 +12,13 @@ import groovy.util.XmlParser
 
       node {   
             environment {
-                  def newToken
+                  def newAuthToken
                   def tokenGenerator
                   def configParser
                   def pushToVault
                   def vaultHostName = "localhost"
+                  def vaultRole = ""
+                  def loginToken = "s.6KkwFnj4dP7go5Nz9bDSTrZb"
             }
         try {
           stage('Checkout') {
@@ -34,18 +36,18 @@ import groovy.util.XmlParser
           stage('Generate') {
               echo 'Generating new token...'
               tokenGenerator = load pwd() + '/refreshToken.groovy'  
-              newToken = tokenGenerator.shuffleToken()
-              println newToken
+              newAuthToken = tokenGenerator.shuffleToken()
+              println newAuthToken
           }
           stage('Update config.xml...'){
               echo 'Updating config.xml file with new token...'
               configParser = load pwd() + '/parseConfig.groovy'  
-              configParser.updateAllConfigs(newToken)
+              configParser.updateAllConfigs(newAuthToken)
           }      
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
-              //pushToVault.updateVaultToken(vaultRole, newToken, vaultHostName)  
+              pushToVault.updateVaultToken(vaultHostName, vaultRole, loginToken, newAuthToken)  
           }
         } 
         catch (e) {
