@@ -4,7 +4,7 @@ import com.cloudbees.plugins.credentials.domains.*
 import com.datapipe.jenkins.vault.credentials.*
 import hudson.util.Secret
 
-def rotateToken() {
+/*def rotateToken() {
         // define the secrets and the env variables
         // engine version can be defined on secret, job, folder or global.
         // the default is engine version 2 unless otherwise specified globally.
@@ -35,7 +35,7 @@ def rotateToken() {
         //   sh 'echo TOKEN=$VAULT_TOKEN'
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
-    }
+    }*/
   def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
     /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
@@ -64,4 +64,4 @@ def rotateToken() {
         } */
         sh "vault login " + loginToken  
     }
-return this 
+return this
