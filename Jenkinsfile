@@ -39,21 +39,19 @@ import groovy.util.XmlParser
               newAuthToken = tokenGenerator.shuffleToken()
               println newAuthToken
           }
-          /*stage('Update config.xml...'){
+          stage('Update config.xml...'){
               echo 'Updating config.xml file with new token...'
               configParser = load pwd() + '/parseConfig.groovy'  
               configParser.updateAllConfigs(newAuthToken)
-          }   */   
+          }      
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
-              println pwd() + '/pushVaultToken.groovy'  
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
               println "Host -> " + vaultHost + "Role -> " + vaultRole + "Login Token -> " + loginToken + "Auth Token -> " + newAuthToken
-              pushToVault.updateVaultToken(vaultHost, vaultRole, loginToken, newAuthToken)  
+              //pushToVault.updateVaultToken(vaultHost, vaultRole, loginToken, newAuthToken)  
           }
         } 
         catch (e) {
             throw e
         }
       }    
-  
