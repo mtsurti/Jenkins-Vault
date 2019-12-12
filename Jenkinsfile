@@ -13,19 +13,16 @@ import groovy.util.XmlParser
       node {   
             environment {
                   def newAuthToken
-                  def user
                   def tokenGenerator
                   def configParser
                   def pushToVault
-                  def vaultHost
-                  def vaultRole
-                  def loginToken 
+                  vaultHost = "localhost"
+                  vaultRole = "auth-token-role"
+                  loginToken = "s.duaFyWBXizlsIA0TFSrcLQKH"
+                  user = "jenkins"
             }
         try {
-          vaultHost = "localhost"
-          vaultRole = "auth-token-role"
-          loginToken = "s.duaFyWBXizlsIA0TFSrcLQKH"
-          user = "jenkins"
+
           
           stage('Checkout') {
               echo 'Checking out scm...'
@@ -42,7 +39,6 @@ import groovy.util.XmlParser
           stage('Generate') {
               echo 'Generating new token...'
               tokenGenerator = load pwd() + '/refreshToken.groovy'
-              println "User is " + user
               newAuthToken = tokenGenerator.shuffleToken(user)
               println newAuthToken
           }
