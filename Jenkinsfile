@@ -16,11 +16,11 @@ import groovy.util.XmlParser
                   def tokenGenerator
                   def configParser
                   def pushToVault
-                  def vaultHost = "localhost"
                   def vaultRole = ""
                   def loginToken = "s.6KkwFnj4dP7go5Nz9bDSTrZb"
             }
         try {
+          def vaultHost = "localhost"
           stage('Checkout') {
               echo 'Checking out scm...'
                 checkout([
