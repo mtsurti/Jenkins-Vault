@@ -67,7 +67,7 @@ import hudson.util.Secret
                }
             }
         } */
-        sh "vault login " + loginToken  
+        sh "vault login token =" + loginToken  
     }
   }
 return this
