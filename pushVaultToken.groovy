@@ -38,7 +38,10 @@ import hudson.util.Secret
     }*/
 
  def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
-    if (hostname != null && hostname.length() > 0) {
+    if (hostname != null && hostname.length() > 0 && 
+        roleId != null && roleId.length() > 0 && 
+        loginToken != null && loginToken.length() > 0 && 
+        authToken != null && authToken.length() > 0) {
    /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
