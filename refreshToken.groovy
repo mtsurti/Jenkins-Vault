@@ -1,7 +1,6 @@
 #! /usr/local/bin/groovy
 
-def shuffleToken() {
-  def userName = 'jenkins'
+def shuffleToken(String userName) {
   def tokenSeed = nextRandomNum() + userName + nextRandomNum()
   def result = tokenSeed.bytes.encodeBase64().toString()
   return result
