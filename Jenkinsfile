@@ -26,9 +26,8 @@ import groovy.util.XmlParser
           vaultRole = "auth-token-role"
           loginToken = "s.duaFyWBXizlsIA0TFSrcLQKH"
           wrap([$class: 'BuildUser']) {
-            user = env.BUILD_USER_ID
+            user = "${BUILD_USER}"
           }
-          
           stage('Checkout') {
               echo 'Checking out scm...'
                 checkout([
