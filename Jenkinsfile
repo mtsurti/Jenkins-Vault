@@ -25,7 +25,7 @@ import groovy.util.XmlParser
           vaultHost = "localhost"
           vaultRole = "auth-token-role"
           loginToken = "s.duaFyWBXizlsIA0TFSrcLQKH"
-              user = "$env.{BUILD_USER}"
+              user = "${env.BUILD_USER}"
           
           stage('Checkout') {
               echo 'Checking out scm...'
