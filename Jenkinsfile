@@ -22,7 +22,7 @@ import groovy.util.XmlParser
             }
         try {
           vaultHost = "localhost"
-          vaultRole = ""
+          vaultRole = "auth-token-role"
           loginToken = "s.duaFyWBXizlsIA0TFSrcLQKH"
           
           stage('Checkout') {
