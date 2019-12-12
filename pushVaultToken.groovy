@@ -52,7 +52,7 @@ import hudson.util.Secret
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
     }*/
-        sh "export VAULT_ADDR=https://" + hostname + ":8200"
+        sh "export VAULT_ADDR=http://" + hostname + ":8200"
         /*def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
         credentials.each {
