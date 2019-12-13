@@ -45,8 +45,7 @@ import hudson.util.Secret
    println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
     def secrets = [
         [path: 'secret/vault-token', secretValues: [
-            [envVar: 'vault-token-id', vaultKey: authToken]
-    ]
+            [envVar: 'vault-token-id', vaultKey: authToken]]]]
  
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
