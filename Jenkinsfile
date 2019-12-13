@@ -18,7 +18,7 @@ import groovy.util.XmlParser
                   def pushToVault
             }
         try {
-          vaultHost = "localhost"
+          vaultHost = "127.0.0.1"
           vaultRole = "vault-token"
           loginToken = "s.V0x1OnLeEHyoYYKMZwJceW4x"
           user = "jenkins"
