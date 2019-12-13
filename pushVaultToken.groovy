@@ -36,7 +36,7 @@ import hudson.util.Secret
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }*/
-@NonCPS
+
  def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
     if (hostname != null && hostname.length() > 0 && 
         roleId != null && roleId.length() > 0 && 
@@ -58,9 +58,9 @@ import hudson.util.Secret
         sh 'echo $vault-token-id'        
         sh '''
           set +x
-          export VAULT_ADDR=https://$(hostname):8200
+          export VAULT_ADDR=https://${hostname}:8200
           export VAULT_SKIP_VERIFY=true
-          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-id/$(authToken))
+          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-id/${authToken})
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${roleId} secret_id=${authToken})
         ''' 
     }
