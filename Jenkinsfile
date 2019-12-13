@@ -19,7 +19,7 @@ import groovy.util.XmlParser
             }
         try {
           vaultHost = "localhost"
-          vaultRole = "auth-token-role"
+          vaultRole = "vault-token"
           loginToken = "s.V0x1OnLeEHyoYYKMZwJceW4x"
           user = "jenkins"
           
