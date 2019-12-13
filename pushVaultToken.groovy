@@ -44,7 +44,7 @@ import hudson.util.Secret
         authToken != null && authToken.length() > 0) {
     println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
     
-    /*def secrets = [
+    def secrets = [
         [path: 'secret/vault-token-id', secretValues: [
             [envVar: 'vault-token-id', vaultKey: authToken]]]
     ]
@@ -55,10 +55,17 @@ import hudson.util.Secret
                          vaultCredentialId: 'vault-token-id']
     // inside this block your credentials will be available as env variables
     withVault([configuration: configuration, vaultSecrets: secrets]) {
-        sh 'echo $vault-token-id'
-    }*/
+        sh 'echo $vault-token-id'        
+        sh '''
+          set +x
+          export VAULT_ADDR=https://$(hostname):8200
+          export VAULT_SKIP_VERIFY=true
+          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-id/$(authToken))
+          export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${roleId} secret_id=${authToken})
+        ''' 
+    }
             
-   withCredentials([string(credentialsId: 'vault-token-id', variable: 'ROLE_ID'),string(credentialsId: 'vault-token-id', variable: 'VAULT_TOKEN')]) {
+   /*withCredentials([string(credentialsId: 'vault-token-id', variable: 'ROLE_ID'),string(credentialsId: 'vault-token-id', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
           export VAULT_ADDR=https://$(hostname):8200
@@ -66,7 +73,7 @@ import hudson.util.Secret
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-id/$(authToken))
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${authToken})
         '''   
-    }
+    }*/
 //          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token/secret-id)
         
         /*//sh "export VAULT_ADDR = hostname + ":8200"
