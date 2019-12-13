@@ -56,6 +56,7 @@ import hudson.util.Secret
         def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
         credentials.each {
+           println "Role is " + it.getRoleId
            if (it.getRoleId() == roleId){
                if ( credentialsStore.updateCredentials(
                  com.cloudbees.plugins.credentials.domains.Domain.global(),
