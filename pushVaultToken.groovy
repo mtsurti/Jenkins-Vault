@@ -44,13 +44,13 @@ import hudson.util.Secret
         authToken != null && authToken.length() > 0) {
     println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
     def secrets = [
-        [path: 'secret/vault-token', secretValues: [
+        [path: 'secret/vault-token-id', secretValues: [
             [envVar: 'vault-token-id', vaultKey: authToken]]]
     ]
  
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
-    def configuration = [vaultUrl: "http://" + hostname + ":8200",
+    def configuration = [vaultUrl: "https://" + hostname + ":8200",
                          vaultCredentialId: 'vault-token-id']
     // inside this block your credentials will be available as env variables
     withVault([configuration: configuration, vaultSecrets: secrets]) {
