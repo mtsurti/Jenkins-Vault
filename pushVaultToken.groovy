@@ -42,7 +42,22 @@ import hudson.util.Secret
         roleId != null && roleId.length() > 0 && 
         loginToken != null && loginToken.length() > 0 && 
         authToken != null && authToken.length() > 0) {
-   withCredentials([string(credentialsId: 'vault-token', variable: 'ROLE_ID'),string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')]) {
+   println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
+    def secrets = [
+        [path: 'secret/vault-token', secretValues: [
+            [envVar: 'vault-token-id', vaultKey: authToken]
+    ]
+ 
+    // optional configuration, if you do not provide this the next higher configuration
+    // (e.g. folder or global) will be used
+    def configuration = [vaultUrl: "http://" + hostname + ":8200",
+                         vaultCredentialId: 'vault-token']
+    // inside this block your credentials will be available as env variables
+    withVault([configuration: configuration, vaultSecrets: secrets]) {
+        sh 'echo $vault-token-id'
+    }
+            
+   /*withCredentials([string(credentialsId: 'vault-token', variable: 'ROLE_ID'),string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
           export VAULT_ADDR=https://$(hostname):8200
@@ -50,8 +65,8 @@ import hudson.util.Secret
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
-    }
-        println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
+    }*/
+        
         /*//sh "export VAULT_ADDR = hostname + ":8200"
         def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
