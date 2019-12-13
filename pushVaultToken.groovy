@@ -50,8 +50,8 @@ import hudson.util.Secret
  
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
-    def configuration = [vaultUrl: "http://" + hostname + ":8200",
-                         vaultCredentialId: 'vault-token']
+    def configuration = [vaultUrl: "https://" + hostname + ":8200",
+                         vaultCredentialId: 'vault-token-id']
     // inside this block your credentials will be available as env variables
     withVault([configuration: configuration, vaultSecrets: secrets]) {
         sh 'echo $vault-token-id'
