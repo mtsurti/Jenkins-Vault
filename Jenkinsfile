@@ -20,7 +20,7 @@ import groovy.util.XmlParser
         try {
           vaultHost = "localhost"
           vaultRole = "auth-token-role"
-          loginToken = "s.OjQ69MUNueI9MjqmnmXucMG3"
+          loginToken = "s.V0x1OnLeEHyoYYKMZwJceW4x"
           user = "jenkins"
           
           stage('Checkout') {
