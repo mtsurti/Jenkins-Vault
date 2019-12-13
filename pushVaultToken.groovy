@@ -42,18 +42,17 @@ import hudson.util.Secret
         roleId != null && roleId.length() > 0 && 
         loginToken != null && loginToken.length() > 0 && 
         authToken != null && authToken.length() > 0) {
-   /*withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
+   withCredentials([string(credentialsId: 'vault-token', variable: 'ROLE_ID'),string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')]) {
         sh '''
           set +x
-          //export VAULT_ADDR=https://$(hostname):8200
-          export VAULT_ADDR=https://localhost:8200
+          export VAULT_ADDR=https://$(hostname):8200
           export VAULT_SKIP_VERIFY=true
-          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-rotation/secret-id)
+          export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
         '''   
-    }*/
+    }
         println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
-        //sh "export VAULT_ADDR = hostname + ":8200"
+        /*//sh "export VAULT_ADDR = hostname + ":8200"
         def credentialsStore = jenkins.model.Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
         def credentials = credentialsStore.getCredentials(Domain.global())
         credentials.each {
@@ -69,7 +68,7 @@ import hudson.util.Secret
                }
             }
         } 
-        //sh "vault login token =" + loginToken  
+        //sh "vault login token =" + loginToken  */
     }
   }
 return this
