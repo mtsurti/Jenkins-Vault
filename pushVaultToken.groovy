@@ -36,7 +36,7 @@ import hudson.util.Secret
         //   sh 'echo ADDR=$VAULT_ADDR'
     // }
     }*/
-
+@NonCPS
  def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
     if (hostname != null && hostname.length() > 0 && 
         roleId != null && roleId.length() > 0 && 
