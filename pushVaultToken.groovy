@@ -44,13 +44,8 @@ import hudson.util.Secret
         //println "vault write -address="+ vaultAddress + "v1/kv/my-secret value=" + vaultToken
         //sh "vault write -address="+ vaultAddress + "v1/kv/my-secret value=" + vaultToken
         
-        println "curl --header \"X-Vault-Token: " + vaultToken + "\" --request LIST " + vaultAddress + "/v1/kv/ | jq"
-        sh "curl --header \"X-Vault-Token: " + vaultToken + "\" --request LIST " + vaultAddress + "/v1/kv/ | jq"
-        
-            println "curl --header \'X-Vault-Token: ${vaultToken}\' --header \'Content-Type: application/json\' -X POST -d \'{\"my-secret\":\"${vaultToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
-        //println "curl --header \'X-Vault-Token: " + vaultToken + "\' --header \'Content-Type: application/json\' -X POST -d {\"my-secret\":\"" + vaultToken + "\"} " + vaultAddress + "/v1/kv/my-secret"
-        //sh "curl --header \'X-Vault-Token: " + vaultToken + "\' --header \'Content-Type: application/json\' -X POST -d \'{\"my-secret\":\"" + vaultToken + "\"}\' " + vaultAddress + "/v1/kv/my-secret"
-            sh "curl --header \'X-Vault-Token: ${vaultToken}\' --header \'Content-Type: application/json\' -X POST -d \'{\"my-secret\":\"${vaultToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
+        //println "curl --header \'X-Vault-Token: ${vaultToken}\' --header \'Content-Type: application/json\' -X POST -d \'{\"my-secret\":\"${vaultToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
+        sh "curl --header \'X-Vault-Token: ${vaultToken}\' --header \'Content-Type: application/json\' -X POST -d \'{\"my-secret\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
         //curl --header 'X-Vault-Token: s.gwMNecnWJ639g3N5cQ7ktGkO' --header 'Content-Type: application/json' -X POST -d '{"my-secret":"s.gwMNecnWJ639g3N5cQ7ktGkO"}' http://127.0.0.1:9200/v1/kv/my-secret
         
         println "curl --header \"X-Vault-Token: " + vaultToken + "\" --request GET " + vaultAddress + "/v1/kv/my-secret | jq"
