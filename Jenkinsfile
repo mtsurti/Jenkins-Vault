@@ -43,8 +43,8 @@ import groovy.util.XmlParser
           }
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
-              //pushToVault = load pwd() + '/pushVaultToken.groovy'  
-              //pushToVault.updateVaultToken(newAuthToken)  
+              pushToVault = load pwd() + '/pushVaultToken.groovy'  
+              pushToVault.updateVaultToken(newAuthToken)  
           }    
           stage('Update config.xml for each job...'){
               echo 'Updating config.xml file with new token...'
