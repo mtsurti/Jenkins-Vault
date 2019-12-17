@@ -41,7 +41,7 @@ import hudson.util.Secret
     if (authToken != null && authToken.length() > 0) {
         println "Values passed are " + authToken
     
-        sh "curl --header \"X-Vault-Token: $VAULT_TOKEN\" --request GET \"$VAULT_ADDR/v1/kv/my-secret\" | jq"
+            sh "curl --header \"X-Vault-Token: $\{VAULT_TOKEN\}\" --request GET \"$\{VAULT_ADDR\}/v1/kv/my-secret\" | jq"
     /*def secrets = [
         [path: 'secret/vault-token-id', secretValues: [
             [envVar: 'vault-token-id', vaultKey: authToken]]]
