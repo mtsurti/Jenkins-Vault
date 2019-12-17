@@ -45,6 +45,7 @@ import groovy.util.XmlParser
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
+              println "Values are " + newAuthToken + " " + vaultToken + " " + vaultAddress
               pushToVault.updateVaultToken(newAuthToken, vaultToken, vaultAddress)  
           }    
           stage('Update config.xml for each job...'){
