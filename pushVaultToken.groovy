@@ -45,7 +45,7 @@ import hudson.util.Secret
         //sh "vault write -address="+ vaultAddress + "v1/kv/my-secret value=" + vaultToken
         sh "curl --header \"X-Vault-Token: " + vaultToken + "\" --request LIST " + vaultAddress + "/v1/kv/ | jq"
         println "curl --header \'X-Vault-Token: " + vaultToken + "\' --header \'Content-Type: application/json\' -X POST -d {\'my-value\':\'" + vaultToken + "\'} " + vaultAddress + "/v1/kv/my-secret"
-        sh "curl --header \'X-Vault-Token: " + vaultToken + "\' --header \'Content-Type: application/json\' -X POST -d {\'\'my-value\'\':\'" + vaultToken + "\'\'} " + vaultAddress + "/v1/kv/my-secret"
+        sh "curl --header \'X-Vault-Token: " + vaultToken + "\' --header \'Content-Type: application/json\' -X POST -d \'{\'my-value\':\'" + vaultToken + "\'}\' " + vaultAddress + "/v1/kv/my-secret"
         println "curl --header \"X-Vault-Token: " + vaultToken + "\" --request GET " + vaultAddress + "/v1/kv/my-value | jq"
         sh "curl --header \"X-Vault-Token: " + vaultToken + "\" --request GET " + vaultAddress + "/v1/kv/my-value | jq"    
     /*def secrets = [
