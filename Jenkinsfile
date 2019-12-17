@@ -16,11 +16,12 @@ import groovy.util.XmlParser
                   def tokenGenerator
                   def configParser
                   def pushToVault
-                  def vault_addr
+                  def vaultAddress
+                  def vaultToken
             }
         try {
-          sh "export VAULT_TOKEN=s.gwMNecnWJ639g3N5cQ7ktGkO"
-          sh "export VAULT_ADDR=http://127.0.0.1:9200"
+          vaultToken = "s.gwMNecnWJ639g3N5cQ7ktGkO"
+          vaultAddress = "http://127.0.0.1:9200"
           user = "jenkins"
           
           stage('Checkout') {
@@ -44,7 +45,7 @@ import groovy.util.XmlParser
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
-              pushToVault.updateVaultToken(newAuthToken)  
+              pushToVault.updateVaultToken(newAuthToken, vaultToken, vaultAddress)  
           }    
           stage('Update config.xml for each job...'){
               echo 'Updating config.xml file with new token...'
