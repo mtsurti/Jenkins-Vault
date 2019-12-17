@@ -44,7 +44,7 @@ import hudson.util.Secret
         
         sh "curl --header \'X-Vault-Token: ${vaultToken}\' --header \'Content-Type: application/json\' -X POST -d \'{\"auth-token\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
         
-        sh "curl --header \"X-Vault-Token: " + vaultToken + "\" --request GET " + vaultAddress + "/v1/kv/my-secret | jq"    
+        sh "curl --header \"X-Vault-Token: ${vaultToken}\" --request GET ${vaultAddress}/v1/kv/my-secret | jq"    
     /*def secrets = [
         [path: 'secret/vault-token-id', secretValues: [
             [envVar: 'vault-token-id', vaultKey: authToken]]]
