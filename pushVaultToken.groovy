@@ -37,14 +37,12 @@ import hudson.util.Secret
     // }
     }*/
 
- def updateVaultToken(String hostname, String roleId, String loginToken, String authToken) {
-    if (hostname != null && hostname.length() > 0 && 
-        roleId != null && roleId.length() > 0 && 
-        loginToken != null && loginToken.length() > 0 && 
-        authToken != null && authToken.length() > 0) {
-    println "Values passed are " + hostname + " " + roleId + " " + loginToken + " " + authToken
+ def updateVaultToken(String authToken) {
+    if (authToken != null && authToken.length() > 0) {
+        println "Values passed are " + authToken
     
-    def secrets = [
+        sh "curl --header \"X-Vault-Token: $VAULT_TOKEN\" --request GET \"$VAULT_ADDR/v1/kv/my-secret\" | jq"
+    /*def secrets = [
         [path: 'secret/vault-token-id', secretValues: [
             [envVar: 'vault-token-id', vaultKey: authToken]]]
     ]
@@ -63,7 +61,7 @@ import hudson.util.Secret
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/vault-token-id/${authToken})
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${roleId} secret_id=${authToken})
         ''' 
-    }
+    }*/
             
    /*withCredentials([string(credentialsId: 'vault-token-id', variable: 'ROLE_ID'),string(credentialsId: 'vault-token-id', variable: 'VAULT_TOKEN')]) {
         sh '''
