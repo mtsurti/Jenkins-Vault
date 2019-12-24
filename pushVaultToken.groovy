@@ -9,9 +9,10 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
        vaultToken != null && vaultToken.length() > 0 &&
        vaultAddress != null && vaultAddress.length() > 0) { 
         //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --header \'X-Vault-Namespace: authtoken/\' --header \'Content-Type: application/json\' -X POST -d \'{\"auth-token\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
-        //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --request GET ${vaultAddress}/v1/authtoken/my-secret | jq"    
+        //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --header \'Content-Type: application/json\' -X POST -d \'{\"auth-token\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/vaulttoken"
+        sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --request GET ${vaultAddress}/v1/kv/vaulttoken | jq"    
 
-        def secrets = [
+  /*      def secrets = [
 //        [path: 'kv/vaulttoken', secretValues: [
 //            [envVar: 'authtoken', vaultKey: "${authToken}"]]],
         [path: 'kv/vaulttoken', secretValues: [
@@ -23,9 +24,11 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
         def configuration = [vaultUrl: "${vaultAddress}",
                          vaultCredentialId: 'auth-writer']
     // inside this block your credentials will be available as env variables
-    withVault([configuration: configuration, vaultSecrets: secrets]) {
-        sh 'echo $authtoken'
-    }
-    }
+//    withVault([configuration: configuration, vaultSecrets: secrets]) {
+//        sh 'echo $authtoken'
+//    }
+        
+      withCredentials([string(credentialsId: 'auth-writer', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
+    }*/
   }
 return this
