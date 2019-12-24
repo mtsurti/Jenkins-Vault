@@ -11,7 +11,7 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
         //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --header \'X-Vault-Namespace: authtoken/\' --header \'Content-Type: application/json\' -X POST -d \'{\"auth-token\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/my-secret"
         //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --header \'Content-Type: application/json\' -X POST -d \'{\"auth-token\":\"${authToken}\"}\' ${vaultAddress}/v1/kv/vaulttoken"
         //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --request GET ${vaultAddress}/v1/kv/vaulttoken | jq"
-        sh "curl -s --header 'X-Vault-Token: s.pfVR31wyO1TeBNKCatCpwmhS' --request LIST http://127.0.0.1:9200/v1/kv/vaulttoken | jq"
+        sh "curl --header 'X-Vault-Token: s.pfVR31wyO1TeBNKCatCpwmhS' --request LIST http://127.0.0.1:9200/v1/kv/vaulttoken | jq"
 
   /*      def secrets = [
 //        [path: 'kv/vaulttoken', secretValues: [
