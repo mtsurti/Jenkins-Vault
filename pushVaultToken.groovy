@@ -12,8 +12,8 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
         //sh "curl --header \'X-Vault-Token: \"${vaultToken}\"\' --request GET ${vaultAddress}/v1/authtoken/my-secret | jq"    
 
         def secrets = [
-        [path: 'kv/vaulttoken', secretValues: [
-            [envVar: 'authtoken', vaultKey: "${authToken}"]]],
+//        [path: 'kv/vaulttoken', secretValues: [
+//            [envVar: 'authtoken', vaultKey: "${authToken}"]]],
         [path: 'kv/vaulttoken', secretValues: [
             [vaultKey: "${authToken}"]]]
         ]    
