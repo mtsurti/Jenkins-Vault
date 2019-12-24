@@ -18,7 +18,7 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
     // optional configuration, if you do not provide this the next higher configuration
     // (e.g. folder or global) will be used
         def configuration = [vaultUrl: ${vaultAddress},
-                         vaultCredentialId: 'auth-reader']
+                         vaultCredentialId: 'auth-writer']
     // inside this block your credentials will be available as env variables
     withVault([configuration: configuration, vaultSecrets: secrets]) {
         sh 'echo ${authtoken}'
