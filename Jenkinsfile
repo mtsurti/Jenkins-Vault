@@ -20,7 +20,7 @@ import groovy.util.XmlParser
                   def vaultToken
             }
         try {
-          vaultToken = "s.EMmbXfFeC9QxDguuRTd3EF1s"//"s.FjHel472v7XTMAh6EUoYlYrl"//"s.pfVR31wyO1TeBNKCatCpwmhS"
+          vaultToken = "s.wOcPUPMMfCjZbKFhxvW2DYlQ"//"s.FjHel472v7XTMAh6EUoYlYrl"//"s.pfVR31wyO1TeBNKCatCpwmhS"
           vaultAddress = "http://127.0.0.1:9200"
           user = "jenkins"
           
