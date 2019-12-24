@@ -30,5 +30,6 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
         
       withCredentials([string(credentialsId: 'auth-writer', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
     }*/
+    }
   }
 return this
