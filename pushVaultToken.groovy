@@ -15,7 +15,7 @@ def updateVaultToken(String authToken, String vaultToken, String vaultAddress) {
 //        [path: 'kv/vaulttoken', secretValues: [
 //            [envVar: 'authtoken', vaultKey: "${authToken}"]]],
         [path: 'kv/vaulttoken', secretValues: [
-            [vaultKey: "${authToken}"]]]
+            [vaultKey: 'authtoken']]]
         ]    
  
     // optional configuration, if you do not provide this the next higher configuration
