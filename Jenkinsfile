@@ -3,12 +3,10 @@ import java.io.InputStream;
 import java.io.FileInputStream
 import java.io.File;
 import javax.xml.transform.stream.StreamSource
-import groovy.xml.MarkupBuilder
 import hudson.model.*
 import jenkins.model.Jenkins
 import groovy.xml.XmlUtil
 import static javax.xml.xpath.XPathConstants.*
-import groovy.util.XmlParser
 
       node {   
             environment {
@@ -40,12 +38,10 @@ import groovy.util.XmlParser
               echo 'Generating new token...'
               tokenGenerator = load pwd() + '/refreshToken.groovy'
               newAuthToken = tokenGenerator.shuffleToken(user)
-              println newAuthToken
           }
           stage('Deploy to Vault server...') {
               echo 'Deploying to Vault Server...'
               pushToVault = load pwd() + '/pushVaultToken.groovy'  
-              println "Values are " + newAuthToken + " " + vaultToken + " " + vaultAddress
               pushToVault.updateVaultToken(newAuthToken, vaultToken, vaultAddress)  
           }    
           stage('Update config.xml for each job...'){
